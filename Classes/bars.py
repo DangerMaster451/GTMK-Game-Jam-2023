@@ -1,5 +1,6 @@
 import pygame
 from pygame.math import Vector2
+from random import randint
 
 class Left_Bar():
     def __init__(self, window, position:Vector2, color):
