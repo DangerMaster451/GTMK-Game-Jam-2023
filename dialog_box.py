@@ -32,8 +32,6 @@ class Dialog_Box():
 
         self.dialog_surface.blit(self.display_text, self.display_text_rect)
 
-
-        
         self.window.blit(self.dialog_surface, self.render_position)
 
-        self.current_frame += 1        
+        self.current_frame += 1

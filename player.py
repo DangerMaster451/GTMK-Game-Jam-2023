@@ -6,8 +6,8 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.window = window
         self.position = Vector2(self.window.get_size()[0]/2, self.window.get_size()[1]/2)
-        self.image = pygame.transform.scale(pygame.image.load("Assets/Tiles/Colored/tile_0000.png"), (50,50))
-        self.speed = 10
+        self.image = pygame.transform.scale(pygame.image.load("Assets/Tiles/Colored/tile_0004.png"), (50,50)).convert_alpha()
+        self.speed = 5
 
     def update(self) -> None:
         self.move()
