@@ -47,4 +47,4 @@ class Grid():
     def render(self) -> None:
         # Render all tiles
         for tile in self.tiles:
-            tile.render()
+            tile.update()
