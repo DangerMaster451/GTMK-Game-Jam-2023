@@ -25,13 +25,11 @@ class Grid():
                         if tile_json_object["data_index"] == value:
                             # Create new tile object
                             position = Vector2(tile_size.x * column_index, tile_size.y * row_index)
-                            image = tile_json_object["file_path"]
-                            layer = tile_json_object["layer"]
                             object = tile_json_object["object"]
                             
                             match object:
                                 case "Default_Tiles":
-                                    tile = Decorative_Tiles(window, position, tile_size)
+                                    tile = Default_Tiles(window, position, tile_size)
                                 case "Cracked_Tiles":
                                     tile = Cracked_Tiles(window, position, tile_size)
                                 case "Decorative_Tiles":
@@ -40,6 +38,8 @@ class Grid():
                                     tile = Center_Tiles(window, position, tile_size)
                                 case "Grass":
                                     tile = Grass(window, position, tile_size)
+                                case "Anvil":
+                                    tile = Anvil(window, position, tile_size)
                                 case _:
                                     raise Exception("No class to represent json value")
                             self.tiles.append(tile)

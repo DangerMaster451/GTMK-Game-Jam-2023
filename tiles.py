@@ -20,29 +20,29 @@ class Anvil(Tile):
 class Grass(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Custom/grass.png")
-        layer = "Wall"
+        layer = "Floor"
         Tile.__init__(self, window, position, scale, image, layer)
 
 class Center_Tiles(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Custom/tiles_center.png")
-        layer = "Wall"
+        layer = "Floor"
         Tile.__init__(self, window, position, scale, image, layer)
 
 class Cracked_Tiles(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Custom/tiles_cracked.png")
-        layer = "Wall"
+        layer = "Floor"
         Tile.__init__(self, window, position, scale, image, layer)
 
 class Decorative_Tiles(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Custom/tiles_decorative.png")
-        layer = "Wall"
+        layer = "Floor"
         Tile.__init__(self, window, position, scale, image, layer)
 
 class Default_Tiles(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Custom/tiles.png")
-        layer = "Wall"
+        layer = "Floor"
         Tile.__init__(self, window, position, scale, image, layer)
