@@ -2,7 +2,6 @@ import pygame
 from sys import exit
 
 from Classes.player import Player
-from Classes.dialog_box import Dialog_Box
 from Classes.grid import Grid
 from Classes.bars import Order_Bar, Side_Bar
 
@@ -17,7 +16,6 @@ clock = pygame.time.Clock()
 # Create Objects
 player = Player(game_display)
 grid = Grid(game_display, "grid_data.json", player)
-dialog_box = Dialog_Box(game_display, "Hello World", (255,255,0), (0,0,0))
 
 order_bar = Order_Bar(window, (255,255,255))
 side_bar = Side_Bar(window, (255,255,255))
