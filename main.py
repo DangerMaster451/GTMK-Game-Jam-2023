@@ -7,15 +7,16 @@ from grid import Grid
 
 # Basic Setup
 pygame.init()
-DEFAULT_RESOLUTION = (720, 720)
-screen = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
+DEFAULT_RESOLUTION = (1280, 720)
+window = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
+game_display = pygame.surface.Surface((720,720))
 pygame.display.set_caption("Shopkeeper")
 clock = pygame.time.Clock()
 
 # Create Objects
-grid = Grid(screen, "grid_data.json")
-player = Player(screen)
-dialog_box = Dialog_Box(screen, "Hello World", (255,255,0), (0,0,0))
+grid = Grid(game_display, "grid_data.json")
+player = Player(game_display)
+dialog_box = Dialog_Box(game_display, "Hello World", (255,255,0), (0,0,0))
 
 # Game Loop
 while True:
@@ -24,9 +25,10 @@ while True:
             pygame.quit()
             exit()
 
-    screen.fill((94,129,162))
+    window.fill((94,129,162))
 
     # Render Sprites
+    window.blit(game_display, (280,0))
     grid.render()
     player.update()
     # dialog_box.render()
