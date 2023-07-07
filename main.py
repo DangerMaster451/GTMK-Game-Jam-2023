@@ -3,7 +3,7 @@ from sys import exit
 
 from Classes.player import Player
 from Classes.grid import Grid
-from Classes.bars import Side_Bar
+from Classes.bars import Left_Bar, Right_Bar
 
 # Basic Setup
 pygame.init()
@@ -17,8 +17,8 @@ clock = pygame.time.Clock()
 player = Player(game_display)
 grid = Grid(game_display, "grid_data.json", player)
 
-right_bar = Side_Bar(window, (1000,0), (255,255,255))
-left_bar = Side_Bar(window, (0,0), (255,255,255))
+right_bar = Right_Bar(window, (1000,0), (255,255,255))
+left_bar = Left_Bar(window, (0,0), (255,255,255))
 
 # Game Loop
 while True:
