@@ -7,7 +7,8 @@
         {"data_index":"3", "object":"Center_Tiles"},
         {"data_index":"4", "object":"Grass"},
         {"data_index":"5", "object":"Anvil"},
-        {"data_index":"6", "object":"Furnace"}
+        {"data_index":"6", "object":"Furnace"},
+        {"data_index":"7", "object":"Ore_Deposit"}
     ],
     "grid_data": 
     [
@@ -17,7 +18,7 @@
         "4420001000000244",
         "4420000100000244",
         "4420001000000244",
-        "4420000056000244",
+        "4420000756000244",
         "4421000000000244",
         "4421000000100244",
         "4420000000000244",

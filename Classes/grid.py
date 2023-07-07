@@ -42,6 +42,8 @@ class Grid():
                                     tile = Anvil(window, position, tile_size)
                                 case "Furnace":
                                     tile = Furnace(window, position, tile_size)
+                                case "Ore_Deposit":
+                                    tile = Ore_Deposit(window, position, tile_size)
                                 case _:
                                     raise Exception("No class to represent json value")
                             self.tiles.append(tile)

@@ -49,6 +49,24 @@ class Furnace(Tile):
     def update(self):
         self.render()
 
+class Ore_Deposit(Tile):
+    def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
+        image = pygame.image.load("Assets/Tiles/Colored/tile_0098.png")
+        Tile.__init__(self, window, position, scale, image)
+        self.scale = scale
+        
+    def check_interaction(self, player) -> bool:
+        # calculate distance a**2 + b**2 = c**2
+        keys = pygame.key.get_pressed()
+        distance_to_player = math.sqrt(abs(self.position.x - player.position.x)**2 + abs(self.position.y - player.position.y)**2)
+        if distance_to_player < 50 and keys[pygame.K_e]:
+            return True
+        else:
+            return False
+
+    def update(self):
+        self.render()
+
 class Grass(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Custom/grass.png")
