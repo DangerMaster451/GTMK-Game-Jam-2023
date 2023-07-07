@@ -2,6 +2,7 @@ import pygame
 from sys import exit
 
 from player import Player
+from dialog_box import Dialog_Box
 
 # Basic Setup
 pygame.init()
@@ -12,6 +13,7 @@ clock = pygame.time.Clock()
 
 # Create Objects
 player = Player(screen)
+dialog_box = Dialog_Box(screen, "Hello World", (255,255,0), (0,0,0))
 
 # Game Loop
 while True:
@@ -24,6 +26,7 @@ while True:
 
     # Render Sprites
     player.update()
+    dialog_box.render()
 
     pygame.display.flip()
     clock.tick(60)
