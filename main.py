@@ -29,6 +29,7 @@ while True:
 
     # Render Sprites
     window.blit(game_display, (280,0))
+    game_display.fill((94,129,162))
     grid.render()
     player.update()
     # dialog_box.render()
