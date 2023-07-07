@@ -4,6 +4,7 @@ from sys import exit
 from player import Player
 from dialog_box import Dialog_Box
 from grid import Grid
+from side_bar import orderBar, sideBar
 
 # Basic Setup
 pygame.init()
@@ -31,6 +32,8 @@ while True:
     window.blit(game_display, (280,0))
     grid.render()
     player.update()
+    orderBar(window, (255,255,255))
+    sideBar(window, (255,255,255))
     # dialog_box.render()
 
     pygame.display.flip()
