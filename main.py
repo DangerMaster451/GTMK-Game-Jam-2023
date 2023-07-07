@@ -29,7 +29,7 @@ while True:
     # Render Sprites
     grid.render()
     player.update()
-    dialog_box.render()
+    # dialog_box.render()
 
     pygame.display.flip()
     clock.tick(60)

@@ -1,25 +1,29 @@
 {
     "map": 
     [
-        {"layer":"Floor", "file_path":"Assets/Tiles/Colored/tile_0096.png", "data_index":"0"}
+        {"layer":"Floor", "file_path":"Assets/Custom/tiles.png", "data_index":"0", "object":"Default_Tiles"},
+        {"layer":"Floor", "file_path":"Assets/Custom/tiles_cracked.png", "data_index":"1", "object":"Cracked_Tiles"},
+        {"layer":"Floor", "file_path":"Assets/Custom/tiles_decorative.png", "data_index":"2", "object":"Decorative_Tiles"},
+        {"layer":"Floor", "file_path":"Assets/Custom/tiles_center.png", "data_index":"3", "object":"Center_Tiles"},
+        {"layer":"Floor", "file_path":"Assets/Custom/grass.png", "data_index":"4", "object":"Grass"}
     ],
     "grid_data": 
     [
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000",
-        "0000000000000000"
+        "4444444444444444",
+        "4444444444444444",
+        "4422000000002244",
+        "4422001000002244",
+        "4400000100000044",
+        "4400001000000044",
+        "4400000000000044",
+        "4401000000000044",
+        "4401000000100044",
+        "4400000000000044",
+        "4400000001000044",
+        "4400000000000044",
+        "4422000000002244",
+        "4422100000002244",
+        "4444444444444444",
+        "4444444444444444"
     ]
 }

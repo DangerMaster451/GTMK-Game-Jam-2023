@@ -2,7 +2,7 @@ import pygame
 from pygame.math import Vector2
 import json
 
-from tile import Tile
+from tiles import *
 
 class Grid():
     def __init__(self, window:pygame.surface.Surface, file_path:str) -> None:
@@ -21,16 +21,30 @@ class Grid():
                 for column_index in range(len(grid_data[row_index])):
                     # find object 
                     value = grid_data[row_index][column_index]
-                    for tile_type in map:
-                        if tile_type["data_index"] == value:
+                    for tile_json_object in map:
+                        if tile_json_object["data_index"] == value:
                             # Create new tile object
                             position = Vector2(tile_size.x * column_index, tile_size.y * row_index)
-                            image = tile_type["file_path"]
-                            layer = tile_type["layer"]
-                            tile = Tile(window, position, tile_size, image, layer)
+                            image = tile_json_object["file_path"]
+                            layer = tile_json_object["layer"]
+                            object = tile_json_object["object"]
+                            
+                            match object:
+                                case "Default_Tiles":
+                                    tile = Decorative_Tiles(window, position, tile_size)
+                                case "Cracked_Tiles":
+                                    tile = Cracked_Tiles(window, position, tile_size)
+                                case "Decorative_Tiles":
+                                    tile = Decorative_Tiles(window, position, tile_size)
+                                case "Center_Tiles":
+                                    tile = Center_Tiles(window, position, tile_size)
+                                case "Grass":
+                                    tile = Grass(window, position, tile_size)
+                                case _:
+                                    raise Exception("No class to represent json value")
                             self.tiles.append(tile)
 
-    def render(self):
+    def render(self) -> None:
         # Render all tiles
         for tile in self.tiles:
             tile.render()
