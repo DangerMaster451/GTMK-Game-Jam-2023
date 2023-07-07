@@ -2,7 +2,7 @@ import pygame
 from pygame.math import Vector2
 import json
 
-from tiles import *
+from Classes.tiles import *
 
 class Grid():
     def __init__(self, window:pygame.surface.Surface, file_path:str, player) -> None:

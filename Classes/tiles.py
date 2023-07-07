@@ -2,7 +2,7 @@ import pygame
 import math
 from pygame.math import Vector2
 
-from player import Player
+from Classes.player import Player
 
 class Tile():
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2, image:pygame.surface.Surface, layer:str) -> None:
