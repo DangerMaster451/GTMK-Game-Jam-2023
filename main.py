@@ -15,8 +15,8 @@ pygame.display.set_caption("Shopkeeper")
 clock = pygame.time.Clock()
 
 # Create Objects
-grid = Grid(game_display, "grid_data.json")
 player = Player(game_display)
+grid = Grid(game_display, "grid_data.json", player)
 dialog_box = Dialog_Box(game_display, "Hello World", (255,255,0), (0,0,0))
 
 # Game Loop

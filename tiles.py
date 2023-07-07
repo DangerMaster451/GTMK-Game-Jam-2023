@@ -1,5 +1,8 @@
 import pygame
+import math
 from pygame.math import Vector2
+
+from player import Player
 
 class Tile():
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2, image:pygame.surface.Surface, layer:str) -> None:
@@ -12,33 +15,26 @@ class Tile():
         self.window.blit(self.image, self.position)
 
 class Anvil(Tile):
-    def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
+    def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2, player:Player) -> None:
         image = pygame.image.load("Assets/Tiles/Colored/tile_0018.png")
         layer = "Wall"
         Tile.__init__(self, window, position, scale, image, layer)
         self.scale = scale
+        self.player = player
         
-
-    def get_hover(self) -> bool:
-        mouse_position = Vector2(pygame.mouse.get_pos()[0] - 280, pygame.mouse.get_pos()[1])
-        # print(f"Mouse Pos: {mouse_position}, Tile Pos: {self.position}, Tile Size: {self.size}")
-
-        if ((mouse_position.x > self.position.x and mouse_position.x < self.scale.x + self.position.x) and 
-            (mouse_position.y > self.position.y and mouse_position.y < self.scale.y + self.position.y)):
-            return True
-        else:
-            return False
-        
-    def get_pressed(self) -> bool:
-        if self.get_hover() and pygame.mouse.get_pressed()[0]:
+    def check_interaction(self) -> bool:
+        # calculate distance a**2 + b**2 = c**2
+        keys = pygame.key.get_pressed()
+        distance_to_player = math.sqrt(abs(self.position.x - self.player.position.x)**2 + abs(self.position.y - self.player.position.y)**2)
+        if distance_to_player < 50 and keys[pygame.K_e]:
             return True
         else:
             return False
 
     def update(self):
         self.render()
-        if self.get_pressed():
-            print("Pressed")
+        if self.check_interaction():
+            print("interaction")
 
 class Grass(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:

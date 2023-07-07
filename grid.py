@@ -5,7 +5,7 @@ import json
 from tiles import *
 
 class Grid():
-    def __init__(self, window:pygame.surface.Surface, file_path:str) -> None:
+    def __init__(self, window:pygame.surface.Surface, file_path:str, player) -> None:
         self.tiles = []
         # Load Data
         with open(file_path, "r") as file:
@@ -39,7 +39,7 @@ class Grid():
                                 case "Grass":
                                     tile = Grass(window, position, tile_size)
                                 case "Anvil":
-                                    tile = Anvil(window, position, tile_size)
+                                    tile = Anvil(window, position, tile_size, player)
                                 case _:
                                     raise Exception("No class to represent json value")
                             self.tiles.append(tile)
