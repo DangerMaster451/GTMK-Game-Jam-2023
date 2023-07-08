@@ -3,7 +3,6 @@ from pygame.math import Vector2
 from sys import exit
 
 import Classes.task as task
-from Classes.task import Task
 from Classes.player import Player
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
@@ -25,6 +24,8 @@ left_bar = Left_Bar(window, (0,0), (94,129,162))
 
 test_task = task.new_task("items.json", (25,25))
 
+interactable_tiles = grid.get_interactable_tiles_in_scene()
+
 # Game Loop
 while True:
     for event in pygame.event.get():
@@ -39,6 +40,12 @@ while True:
     game_display.fill((94,129,162))
     grid.render()
     player.update()
+
+    # Check for interactions
+    for tile in interactable_tiles:
+        if tile.check_interaction(player):
+            print(f"Interaction with {type(tile)}")
+
 
     left_bar.display_text("Task 1", (255,255,255), 75)
     left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)

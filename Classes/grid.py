@@ -56,3 +56,8 @@ class Grid():
         # Render all tiles
         for tile in self.tiles:
             tile.update()
+
+    def get_interactable_tiles_in_scene(self) -> list[Tile]:
+        INTERACTABLE_TILE_TYPES = [Anvil, Wood_Deposit, Steel_Deposit, String_Deposit, Titanium_Deposit]
+
+        return [tile for tile in self.tiles if type(tile) in INTERACTABLE_TILE_TYPES]
