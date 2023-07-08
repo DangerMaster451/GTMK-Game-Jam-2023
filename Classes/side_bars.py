@@ -13,8 +13,11 @@ class Side_Bar():
         self.normal_font = pygame.font.Font("Assets/Fonts/PixelFont.ttf", 24)
         self.small_font = pygame.font.Font("Assets/Fonts/PixelFont.ttf", 12)
 
-    def display_text(self, text:str, text_color:tuple[int,int,int], position_y:int) -> None:
-        render_text = self.normal_font.render(text, True, text_color, self.bg_color)
+    def display_text(self, text:str, text_color:tuple[int,int,int], position_y:int, small_text=False) -> None:
+        if small_text:
+            render_text = self.small_font.render(text, True, text_color, self.bg_color)
+        else:
+            render_text = self.normal_font.render(text, True, text_color, self.bg_color)
         render_text_rect = render_text.get_rect()
         render_text_rect.center = Vector2(self.sideBar_surface.get_size()[0]/2, position_y)
         self.sideBar_surface.blit(render_text, render_text_rect)   

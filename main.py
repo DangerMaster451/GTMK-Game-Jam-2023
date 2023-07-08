@@ -8,6 +8,8 @@ from Classes.player import Player
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
 
+# ! Add deltatime for player speed
+
 # Basic Setup
 pygame.init()
 DEFAULT_RESOLUTION = (1280, 720)
@@ -46,19 +48,26 @@ while True:
 
     left_bar.display_text("Task 1", (255,255,255), 75)
     left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)
+    
+    right_bar.display_text("Player", (255,255,255), 75)
+    right_bar.display_text("Inventory", (255,255,255), 110)
+    right_bar.display_text(player.item, (255,255,0), 135, small_text=True)
 
-    right_bar.display_text(player.item, (255,255,255), 75)
-    right_bar.display_text(str(grid.get_anvil_inventories()), (255,255,255), 175)
+    right_bar.display_text("Anvil", (255,255,255), 175)
+    right_bar.display_text("Inventory", (255,255,255), 210)
+    
+    for index, item in enumerate(grid.get_anvil_inventories()[0]):
+        right_bar.display_text(item, (255,255,0), (235 + index*20), small_text=True)
 
     # Check for interactions
     for tile in interactable_tiles:
         if tile.check_interaction(player):
             if type(tile) == Anvil:
-                if player.item not in tile.inventory:
+                if player.item not in tile.inventory and player.item != None:
                     tile.inventory.append(player.item)
                 player.item = None
             else:
-                player.item = tile.item_name    
+                player.item = tile.item_name
 
     # Render Game
     window.blit(game_display, (280,0))
