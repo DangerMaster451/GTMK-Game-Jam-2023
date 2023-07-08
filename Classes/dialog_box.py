@@ -1,7 +1,14 @@
 import pygame
 
-class Dialog_Box():
-    def __init__(self, window:pygame.surface.Surface, text:str, text_color:tuple[int,int,int], text_bg_color:tuple[int,int,int]) -> None:
+
+class Dialog_Box:
+    def __init__(
+        self,
+        window: pygame.surface.Surface,
+        text: str,
+        text_color: tuple[int, int, int],
+        text_bg_color: tuple[int, int, int],
+    ) -> None:
         self.window = window
 
         self.text = text
@@ -10,10 +17,10 @@ class Dialog_Box():
         self.font = pygame.font.Font("Assets/Fonts/PixelFont.ttf", 48)
         self.display_text = self.font.render(text, True, text_color, text_bg_color)
         self.display_text_rect = self.display_text.get_rect()
-        self.display_text_rect.topleft = (50,50)
+        self.display_text_rect.topleft = (50, 50)
 
-        size = (self.window.get_size()[0]-100, 250)
-        self.render_position = (50, self.window.get_size()[1]/2+size[1]/2)
+        size = (self.window.get_size()[0] - 100, 250)
+        self.render_position = (50, self.window.get_size()[1] / 2 + size[1] / 2)
         self.dialog_surface = pygame.surface.Surface(size)
 
         self.animation_frame = 0
@@ -24,9 +31,17 @@ class Dialog_Box():
     def render(self) -> None:
         self.dialog_surface.fill("black")
 
-        self.display_text = self.font.render(self.text[0:self.animation_frame], True, self.text_color, self.text_bg_color)
+        self.display_text = self.font.render(
+            self.text[0 : self.animation_frame],
+            True,
+            self.text_color,
+            self.text_bg_color,
+        )
         if self.animation_frame < len(self.text):
-            if self.current_frame - self.last_frame_animated > self.frames_per_animation:
+            if (
+                self.current_frame - self.last_frame_animated
+                > self.frames_per_animation
+            ):
                 self.animation_frame += 1
                 self.last_frame_animated = self.current_frame
 
