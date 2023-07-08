@@ -34,27 +34,34 @@ while True:
             pygame.quit()
             exit()
 
+    # Clear All Windows
     window.fill((94,129,162))
-
-    # Render Sprites
-    window.blit(game_display, (280,0))
+    left_bar.sideBar_surface.fill(left_bar.bg_color)
+    right_bar.sideBar_surface.fill(right_bar.bg_color)
     game_display.fill((94,129,162))
+    
+    # Render Sprites    
     grid.render()
     player.update()
+
+    left_bar.display_text("Task 1", (255,255,255), 75)
+    left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)
+
+    right_bar.display_text(player.item, (255,255,255), 75)
 
     # Check for interactions
     for tile in interactable_tiles:
         if tile.check_interaction(player):
             if type(tile) == Anvil:
-                pass
+                # Open menu
+                player.item = None
             else:
-                player.item = tile.name
+                player.item = tile.item_name    
 
-    print(player.item)
+    # Render Game
+    window.blit(game_display, (280,0))
 
-    left_bar.display_text("Task 1", (255,255,255), 75)
-    left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)
-    
+    # Render Side Bars
     right_bar.render()
     left_bar.render()
 

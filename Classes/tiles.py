@@ -17,7 +17,6 @@ class Anvil(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Tiles/Colored/tile_0018.png")
         Tile.__init__(self, window, position, scale, image)
-        self.name = "Anvil"
         self.scale = scale
         
     def check_interaction(self, player) -> bool:
@@ -36,7 +35,7 @@ class Wood_Deposit(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Tiles/Colored/tile_0008.png")
         Tile.__init__(self, window, position, scale, image)
-        self.name = "Wood Deposit"
+        self.item_name = "Wood"
         self.scale = scale
         
     def check_interaction(self, player) -> bool:
@@ -55,7 +54,7 @@ class Steel_Deposit(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Tiles/Colored/tile_0009.png")
         Tile.__init__(self, window, position, scale, image)
-        self.name = "Steel Deposit"
+        self.item_name = "Steel"
         self.scale = scale
         
     def check_interaction(self, player) -> bool:
@@ -74,7 +73,7 @@ class String_Deposit(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Tiles/Colored/tile_0012.png")
         Tile.__init__(self, window, position, scale, image)
-        self.name = "String Deposit"
+        self.item_name = "String"
         self.scale = scale
         
     def check_interaction(self, player) -> bool:
@@ -93,7 +92,7 @@ class Titanium_Deposit(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
         image = pygame.image.load("Assets/Tiles/Colored/tile_0015.png")
         Tile.__init__(self, window, position, scale, image)
-        self.name = "Titanium Deposit"
+        self.item_name = "Titanium"
         self.scale = scale
         
     def check_interaction(self, player) -> bool:
