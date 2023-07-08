@@ -23,7 +23,7 @@ class Side_Bar():
         render_text_rect.center = Vector2(self.sideBar_surface.get_size()[0]/2, position_y)
         self.sideBar_surface.blit(render_text, render_text_rect)   
 
-    def display_task(self, task:Task, grid:Grid, text_color, position:Vector2, spacing:int):
+    def display_task(self, task:Task, grid:Grid, text_color, position:Vector2, spacing:int, task_complete:bool) -> None:
         center_x = self.sideBar_surface.get_size()[0]/2
         # Render Weapon Type
         weapon_text = self.normal_font.render(task.weapon_type, True, text_color, self.bg_color)
@@ -45,6 +45,12 @@ class Side_Bar():
                 self.sideBar_surface.blit(completed_material_icon, (position_x, position.y+spacing*2))
             else:
                 self.sideBar_surface.blit(material_icon, (position_x, position.y+spacing*2))
+
+        if task_complete:
+            complete_text = self.small_font.render("Press SPACE to Complete", True, text_color, self.bg_color)
+            complete_text_rect = complete_text.get_rect()
+            complete_text_rect.center = Vector2(center_x, position.y+spacing*4)
+            self.sideBar_surface.blit(complete_text, complete_text_rect)
         
     def render(self):
         self.window.blit(self.sideBar_surface, self.sideBar_rect)

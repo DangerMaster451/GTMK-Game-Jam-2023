@@ -62,5 +62,10 @@ class Grid():
 
         return [tile for tile in self.tiles if type(tile) in INTERACTABLE_TILE_TYPES]
     
-    def get_anvil_inventories(self) ->list[list]:
+    def get_anvil_inventories(self) -> list[list]:
         return [tile.inventory for tile in self.tiles if type(tile) == Anvil]
+    
+    def clear_anvil_inventories(self) -> None:
+        for tile in self.tiles:
+            if type(tile) == Anvil:
+                tile.inventory = []

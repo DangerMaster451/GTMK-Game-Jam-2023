@@ -1,6 +1,7 @@
 import pygame
 import random
 import json
+from Classes.grid import Grid
 
 class Task():
     def __init__(self, weapon_type:str, material_names:list[str], material_icon_paths:list[str], completed_material_icon_paths:list[str],icon_scale:tuple[int,int]) -> None:
@@ -8,6 +9,14 @@ class Task():
         self.material_names = material_names
         self.material_icons = [pygame.transform.scale(pygame.image.load(icon_path), icon_scale) for icon_path in material_icon_paths]
         self.completed_material_icons = [pygame.transform.scale(pygame.image.load(icon_path), icon_scale) for icon_path in completed_material_icon_paths]
+
+    def check_if_task_completed(self, grid:Grid) -> bool:
+        for index in range(len(self.material_names)):
+            if self.material_names[index] in grid.get_anvil_inventories()[0]:
+                pass
+            else:
+                return False # If this is never called, the function will return true
+        return True
 
 def new_task(items_file_path, icon_scale) -> Task:
     with open(items_file_path, "r") as file:

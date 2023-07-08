@@ -25,7 +25,7 @@ grid = Grid(game_display, "grid_data.json", player)
 right_bar = Right_Bar(window, (1000,0), (94,129,162))
 left_bar = Left_Bar(window, (0,0), (94,129,162))
 
-test_task = task.new_task("items.json", (25,25))
+tasks = [task.new_task("items.json", (25,25)), task.new_task("items.json", (25,25))]
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
@@ -46,8 +46,9 @@ while True:
     grid.render()
     player.update()
 
-    left_bar.display_text("Task 1", (255,255,255), 75)
-    left_bar.display_task(test_task, grid, (255,255,0), Vector2(75, 175), 25)
+    left_bar.display_text("Tasks", (255,255,255), 75)
+    for index, _task in enumerate(tasks):
+        left_bar.display_task(_task, grid, (255,255,0), Vector2(75, 175 + 150*index), 25, _task.check_if_task_completed(grid))
     
     right_bar.display_text("Player", (255,255,255), 75)
     right_bar.display_text("Inventory", (255,255,255), 110)
@@ -68,6 +69,13 @@ while True:
                 player.item = None
             else:
                 player.item = tile.item_name
+
+    for _task in tasks:
+        if _task.check_if_task_completed(grid):
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_SPACE]:
+                tasks.remove(_task)
+                grid.clear_anvil_inventories()
 
     # Render Game
     window.blit(game_display, (280,0))
