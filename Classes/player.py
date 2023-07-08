@@ -12,6 +12,7 @@ class Player(pygame.sprite.Sprite):
         self.wobble_value = 0
         self.limit_position = Vector2(135,135)
         self.limit_size = Vector2(405,405)
+        self.item = None
 
     def update(self) -> None:
         self.move()
