@@ -44,8 +44,10 @@ class Grid:
                                     tile = Center_Tiles(window, position, tile_size)
                                 case "Grass":
                                     tile = Grass(window, position, tile_size)
-                                case "Anvil":
-                                    tile = Anvil(window, position, tile_size)
+                                case "Anvil_Left":
+                                    tile = Anvil_Left(window, position, tile_size)
+                                case "Anvil_Right":
+                                    tile = Anvil_Right(window, position, tile_size)
                                 case "Wood_Deposit":
                                     tile = Wood_Deposit(window, position, tile_size)
                                 case "Steel_Deposit":
@@ -65,19 +67,19 @@ class Grid:
 
     def get_interactable_tiles_in_scene(self) -> list[Tile]:
         INTERACTABLE_TILE_TYPES = [
-            Anvil,
+            Anvil_Left,
             Wood_Deposit,
             Steel_Deposit,
             String_Deposit,
-            Titanium_Deposit,
+            Titanium_Deposit
         ]
 
         return [tile for tile in self.tiles if type(tile) in INTERACTABLE_TILE_TYPES]
 
     def get_anvil_inventories(self) -> list[list]:
-        return [tile.inventory for tile in self.tiles if type(tile) == Anvil]
+        return [tile.inventory for tile in self.tiles if type(tile) == Anvil_Left]
 
     def clear_anvil_inventories(self) -> None:
         for tile in self.tiles:
-            if type(tile) == Anvil:
+            if type(tile) == Anvil_Left:
                 tile.inventory = []
