@@ -18,6 +18,7 @@ class Anvil(Tile):
         image = pygame.image.load("Assets/Tiles/Colored/tile_0018.png")
         Tile.__init__(self, window, position, scale, image)
         self.scale = scale
+        self.inventory = []
         
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2

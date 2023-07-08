@@ -61,3 +61,6 @@ class Grid():
         INTERACTABLE_TILE_TYPES = [Anvil, Wood_Deposit, Steel_Deposit, String_Deposit, Titanium_Deposit]
 
         return [tile for tile in self.tiles if type(tile) in INTERACTABLE_TILE_TYPES]
+    
+    def get_anvil_inventories(self) ->list[list]:
+        return [tile.inventory for tile in self.tiles if type(tile) == Anvil]

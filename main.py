@@ -48,12 +48,14 @@ while True:
     left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)
 
     right_bar.display_text(player.item, (255,255,255), 75)
+    right_bar.display_text(str(grid.get_anvil_inventories()), (255,255,255), 175)
 
     # Check for interactions
     for tile in interactable_tiles:
         if tile.check_interaction(player):
             if type(tile) == Anvil:
-                # Open menu
+                if player.item not in tile.inventory:
+                    tile.inventory.append(player.item)
                 player.item = None
             else:
                 player.item = tile.item_name    
