@@ -29,7 +29,7 @@ class Anvil(Tile):
         else:
             return False
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Wood_Deposit(Tile):
@@ -48,7 +48,7 @@ class Wood_Deposit(Tile):
         else:
             return False
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Steel_Deposit(Tile):
@@ -67,7 +67,7 @@ class Steel_Deposit(Tile):
         else:
             return False
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class String_Deposit(Tile):
@@ -86,7 +86,7 @@ class String_Deposit(Tile):
         else:
             return False
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Titanium_Deposit(Tile):
@@ -105,7 +105,7 @@ class Titanium_Deposit(Tile):
         else:
             return False
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Grass(Tile):
@@ -114,9 +114,8 @@ class Grass(Tile):
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
-    def update(self):
-        self.render()
-        
+    def update(self) -> None:
+        self.render()        
 
 class Center_Tiles(Tile):
     def __init__(self, window:pygame.surface.Surface, position:Vector2, scale:Vector2) -> None:
@@ -124,7 +123,7 @@ class Center_Tiles(Tile):
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Cracked_Tiles(Tile):
@@ -133,7 +132,7 @@ class Cracked_Tiles(Tile):
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Decorative_Tiles(Tile):
@@ -142,7 +141,7 @@ class Decorative_Tiles(Tile):
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
-    def update(self):
+    def update(self) -> None:
         self.render()
 
 class Default_Tiles(Tile):
@@ -151,5 +150,5 @@ class Default_Tiles(Tile):
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
-    def update(self):
+    def update(self) -> None:
         self.render()

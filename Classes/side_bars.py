@@ -5,7 +5,7 @@ from Classes.task import Task
 from Classes.grid import Grid
 
 class Side_Bar():
-    def __init__(self, window, position:Vector2, bg_color):
+    def __init__(self, window, position:Vector2, bg_color) -> None:
         self.bg_color = bg_color
         self.window = window
         self.sideBar_surface = pygame.surface.Surface((280,720))
@@ -52,14 +52,14 @@ class Side_Bar():
             complete_text_rect.center = Vector2(center_x, position.y+spacing*4)
             self.sideBar_surface.blit(complete_text, complete_text_rect)
         
-    def render(self):
+    def render(self) -> None:
         self.window.blit(self.sideBar_surface, self.sideBar_rect)
 
 class Left_Bar(Side_Bar):
-    def __init__(self, window, position: Vector2, bg_color):
+    def __init__(self, window, position: Vector2, bg_color) -> None:
         super().__init__(window, position, bg_color)
     
 class Right_Bar(Side_Bar):
-    def __init__(self, window, position: Vector2, bg_color):
+    def __init__(self, window, position: Vector2, bg_color)  -> None:
         super().__init__(window, position, bg_color)
         

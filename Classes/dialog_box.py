@@ -1,7 +1,7 @@
 import pygame
 
 class Dialog_Box():
-    def __init__(self, window:pygame.surface.Surface, text:str, text_color:tuple[int,int,int], text_bg_color:tuple[int,int,int]):
+    def __init__(self, window:pygame.surface.Surface, text:str, text_color:tuple[int,int,int], text_bg_color:tuple[int,int,int]) -> None:
         self.window = window
 
         self.text = text
