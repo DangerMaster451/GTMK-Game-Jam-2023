@@ -14,11 +14,15 @@ from Classes.side_bars import Left_Bar, Right_Bar
 
 # Basic Setup
 pygame.init()
+pygame.mixer.init()
 DEFAULT_RESOLUTION = (1280, 720)
 window = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
 game_display = pygame.surface.Surface((720, 720))
 pygame.display.set_caption("Shopkeeper - GMTK Game Jam Entry 2023")
 clock = pygame.time.Clock()
+
+# Load Sound FX
+anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
 
 # Create Objects
 player = Player(game_display)
@@ -119,6 +123,7 @@ while True:
         if tile.check_interaction(player):
             if type(tile) == Anvil_Left:
                 if player.item not in tile.inventory and player.item != None:
+                    anvil_fx.play()
                     tile.inventory.append(player.item)
                 player.item = None
             else:

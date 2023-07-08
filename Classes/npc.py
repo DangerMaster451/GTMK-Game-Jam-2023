@@ -34,7 +34,7 @@ class NPC(pygame.sprite.Sprite):
     def move(self):
         self.position.y += self.speed
         self.wobble_value += 1
-        if self.position.y > 580 - self.index*45:
+        if self.position.y > 535 - self.index*135:
             self.state = "start_order"
             self.start_order_frame = self.current_frame
 
