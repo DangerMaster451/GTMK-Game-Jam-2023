@@ -70,7 +70,7 @@ while True:
     # Check for interactions
     for tile in interactable_tiles:
         if tile.check_interaction(player):
-            if type(tile) == Anvil:
+            if type(tile) == Anvil_Left:
                 if player.item not in tile.inventory and player.item != None:
                     tile.inventory.append(player.item)
                 player.item = None

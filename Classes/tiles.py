@@ -21,7 +21,7 @@ class Tile:
         self.window.blit(self.image, self.position)
 
 
-class Anvil(Tile):
+class Anvil_Left(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
@@ -41,6 +41,18 @@ class Anvil(Tile):
             return True
         else:
             return False
+
+    def update(self) -> None:
+        self.render()
+
+class Anvil_Right(Tile):
+    def __init__(
+        self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
+    ) -> None:
+        image = pygame.image.load("Assets/Images/Tiles/Anvil_Right.png")
+        Tile.__init__(self, window, position, scale, image)
+        self.scale = scale
+        self.inventory = []
 
     def update(self) -> None:
         self.render()
