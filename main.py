@@ -4,7 +4,9 @@ from sys import exit
 
 import Classes.task as task_module
 import Classes.npc as npc_module
+import Classes.particles as particles_module
 from Classes.tiles import *
+from Classes.particles import Particle
 from Classes.player import Player
 from Classes.npc import NPC
 from Classes.grid import Grid
@@ -24,6 +26,9 @@ clock = pygame.time.Clock()
 # Load Sound FX
 anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
 
+# ! Remove
+test_particle_image = pygame.image.load("Assets/Images/Tiles/Tiles.png")
+
 # Create Objects
 player = Player(game_display)
 grid = Grid(game_display, "grid_data.json", player)
@@ -33,6 +38,7 @@ left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
 
 tasks = []
 npcs = []
+particles = []
 
 min_npcs = 1
 max_npcs = 4
@@ -68,6 +74,18 @@ while True:
     # Render Sprites
     grid.render()
     player.update()
+
+    # Spawn Particles
+    particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
+
+    # Render Particles
+    for particle in particles: particle.update()
+
+    # Remove unused Particles
+    for particle in particles:
+        if particle.life <= 0:
+            particles.remove(particle)
+            del particle
 
     # Update NPCs
     for npc in npcs:
