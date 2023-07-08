@@ -3,7 +3,7 @@ from sys import exit
 
 from Classes.player import Player
 from Classes.grid import Grid
-from Classes.bars import Left_Bar, Right_Bar
+from Classes.side_bars import Left_Bar, Right_Bar
 
 # Basic Setup
 pygame.init()
@@ -34,9 +34,13 @@ while True:
     game_display.fill((94,129,162))
     grid.render()
     player.update()
+
+    left_bar.display_text("Hi", (255,255,255), 75)
+    right_bar.display_text("Hello", (255,255,255), 175)
     
     right_bar.render()
     left_bar.render()
+    
 
     pygame.display.flip()
     clock.tick(60)
