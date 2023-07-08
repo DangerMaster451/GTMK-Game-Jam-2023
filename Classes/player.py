@@ -11,7 +11,7 @@ class Player(pygame.sprite.Sprite):
             self.window.get_size()[0] / 2, self.window.get_size()[1] / 2
         )
         self.image = pygame.transform.scale(
-            pygame.image.load("Assets/Custom/Player.png"), (50, 50)
+            pygame.image.load("Assets/Images/Sprites/Player.png"), (50, 50)
         )
         self.speed = 5
         self.wobble_value = 0

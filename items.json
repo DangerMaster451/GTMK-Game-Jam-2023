@@ -4,13 +4,13 @@
         "materials":[
             {
                 "name":"Wood", 
-                "icon_path":"Assets/Tiles/Colored/tile_0008.png",
-                "completed_icon_path":"Assets/Custom/Check.png"
+                "icon_path":"Assets/Images/Icons/Wood_Icon.png",
+                "completed_icon_path":"Assets/Images/Icons/Wood_Complete_Icon.png"
             },
             {
                 "name":"Steel", 
-                "icon_path":"Assets/Tiles/Colored/tile_0009.png",
-                "completed_icon_path":"Assets/Custom/Check.png"
+                "icon_path":"Assets/Images/Icons/Steel_Icon.png",
+                "completed_icon_path":"Assets/Images/Icons/Steel_Complete_Icon.png"
             }
         ]
     },
@@ -19,13 +19,13 @@
         "materials":[
             {
                 "name":"Wood", 
-                "icon_path":"Assets/Tiles/Colored/tile_0008.png",
-                "completed_icon_path":"Assets/Custom/Check.png"
+                "icon_path":"Assets/Images/Icons/Wood_Icon.png",
+                "completed_icon_path":"Assets/Images/Icons/Wood_Complete_Icon.png"
             },
             {
                 "name":"String",
-                "icon_path":"Assets/Tiles/Colored/tile_0012.png",
-                "completed_icon_path":"Assets/Custom/Check.png"
+                "icon_path":"Assets/Images/Icons/String_Icon.png",
+                "completed_icon_path":"Assets/Images/Icons/String_Complete_Icon.png"
             }
         ]
     },
@@ -34,13 +34,13 @@
         "materials":[
             {
                 "name":"Wood",
-                "icon_path":"Assets/Tiles/Colored/tile_0008.png",
-                "completed_icon_path":"Assets/Custom/Check.png"
+                "icon_path":"Assets/Images/Icons/Wood_Icon.png",
+                "completed_icon_path":"Assets/Images/Icons/Wood_Complete_Icon.png"
             },
             {
                 "name":"Titanium",
-                "icon_path":"Assets/Tiles/Colored/tile_0015.png",
-                "completed_icon_path":"Assets/Custom/Check.png"
+                "icon_path":"Assets/Images/Icons/Titanium_Icon.png",
+                "completed_icon_path":"Assets/Images/Icons/Titanium_Complete_Icon.png"
             }
         ]
     }

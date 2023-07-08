@@ -25,7 +25,7 @@ class Anvil(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Tiles/Colored/tile_0018.png")
+        image = pygame.image.load("Assets/Images/Tiles/Anvil_Left.png")
         Tile.__init__(self, window, position, scale, image)
         self.scale = scale
         self.inventory = []
@@ -50,7 +50,7 @@ class Wood_Deposit(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Tiles/Colored/tile_0008.png")
+        image = pygame.image.load("Assets/Images/Tiles/Wood_Tile.png")
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Wood"
         self.scale = scale
@@ -75,7 +75,7 @@ class Steel_Deposit(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Tiles/Colored/tile_0009.png")
+        image = pygame.image.load("Assets/Images/Tiles/Steel_Tile.png")
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Steel"
         self.scale = scale
@@ -100,7 +100,7 @@ class String_Deposit(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Tiles/Colored/tile_0012.png")
+        image = pygame.image.load("Assets/Images/Tiles/String_Tile.png")
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "String"
         self.scale = scale
@@ -125,7 +125,7 @@ class Titanium_Deposit(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Tiles/Colored/tile_0015.png")
+        image = pygame.image.load("Assets/Images/Tiles/Titanium_Tile.png")
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Titanium"
         self.scale = scale
@@ -150,7 +150,7 @@ class Grass(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Custom/grass.png")
+        image = pygame.image.load("Assets/Images/Tiles/Grass.png")
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
@@ -162,7 +162,7 @@ class Center_Tiles(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Custom/tiles_center.png")
+        image = pygame.image.load("Assets/Images/Tiles/Tiles_Center.png")
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
@@ -174,7 +174,7 @@ class Cracked_Tiles(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Custom/tiles_cracked.png")
+        image = pygame.image.load("Assets/Images/Tiles/Tiles_Cracked.png")
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
@@ -186,7 +186,7 @@ class Decorative_Tiles(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Custom/tiles_decorative.png")
+        image = pygame.image.load("Assets/Images/Tiles/Tiles_Decorative.png")
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
@@ -198,7 +198,7 @@ class Default_Tiles(Tile):
     def __init__(
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
-        image = pygame.image.load("Assets/Custom/tiles.png")
+        image = pygame.image.load("Assets/Images/Tiles/Tiles.png")
         Tile.__init__(self, window, position, scale, image)
         self.size = image.get_size()
 
