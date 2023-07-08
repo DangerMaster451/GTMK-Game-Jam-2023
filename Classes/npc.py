@@ -2,10 +2,6 @@ import pygame
 import math
 from pygame.math import Vector2
 
-from Classes.task import Task
-import Classes.task as task
-
-
 class NPC(pygame.sprite.Sprite):
     def __init__(self, window:pygame.surface.Surface):
         self.window = window
@@ -51,8 +47,7 @@ class NPC(pygame.sprite.Sprite):
             self.state = "wait"
 
     def wait(self):
-        if self.current_frame - self.start_order_frame > 120:
-            self.state = "leave"
+        pass
         # TODO idle animation
 
     def leave(self):

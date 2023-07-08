@@ -2,6 +2,7 @@ import pygame
 import random
 import json
 from Classes.grid import Grid
+from Classes.npc import NPC
 
 
 class Task:
@@ -12,6 +13,7 @@ class Task:
         material_icon_paths: list[str],
         completed_material_icon_paths: list[str],
         icon_scale: tuple[int, int],
+        npc: NPC
     ) -> None:
         self.weapon_type = weapon_type
         self.material_names = material_names
@@ -23,6 +25,7 @@ class Task:
             pygame.transform.scale(pygame.image.load(icon_path), icon_scale)
             for icon_path in completed_material_icon_paths
         ]
+        self.npc = npc
 
     def check_if_task_completed(self, grid: Grid) -> bool:
         for index in range(len(self.material_names)):
@@ -33,7 +36,7 @@ class Task:
         return True
 
 
-def new_task(items_file_path, icon_scale) -> Task:
+def new_task(npc, items_file_path, icon_scale) -> Task:
     with open(items_file_path, "r") as file:
         items = json.load(file)
         random_item = items[random.randint(0, len(items) - 1)]
@@ -58,4 +61,5 @@ def new_task(items_file_path, icon_scale) -> Task:
             material_icon_paths,
             completed_material_icon_paths,
             icon_scale,
+            npc
         )

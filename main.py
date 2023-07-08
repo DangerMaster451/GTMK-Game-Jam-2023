@@ -16,7 +16,7 @@ pygame.init()
 DEFAULT_RESOLUTION = (1280, 720)
 window = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
 game_display = pygame.surface.Surface((720, 720))
-pygame.display.set_caption("Shopkeeper")
+pygame.display.set_caption("Shopkeeper - GMTK Game Jam Entry 2023")
 clock = pygame.time.Clock()
 
 # Create Objects
@@ -52,7 +52,15 @@ while True:
         npc.update()
 
         if npc.state == "start_order":
-            tasks.append(task.new_task("items.json", (25,25)))
+            tasks.append(task.new_task(npc, "items.json", (25,25)))
+        if npc.state == "wait":
+            match = False
+            for _task in tasks:
+                if _task.npc == npc:
+                    match = True
+            if match == False:
+                npc.state = "leave"
+
         if npc.state == "delete":
             npcs.remove(npc)
             del npc
