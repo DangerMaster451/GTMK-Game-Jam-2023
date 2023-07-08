@@ -8,7 +8,7 @@ from Classes.player import Player
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
 
-# ! Add deltatime for player speed
+# ! Add delta time for player speed
 
 # Basic Setup
 pygame.init()
@@ -47,7 +47,7 @@ while True:
     player.update()
 
     left_bar.display_text("Task 1", (255,255,255), 75)
-    left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)
+    left_bar.display_task(test_task, grid, (255,255,0), Vector2(75, 175), 25)
     
     right_bar.display_text("Player", (255,255,255), 75)
     right_bar.display_text("Inventory", (255,255,255), 110)

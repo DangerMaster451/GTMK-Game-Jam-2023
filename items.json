@@ -2,34 +2,46 @@
     {
         "name":"SWORD",
         "materials":[
-            {"name":"wood", "icon_path":"Assets/Tiles/Colored/tile_0008.png"},
-            {"name":"steel", "icon_path":"Assets/Tiles/Colored/tile_0009.png"}
-        ],
-        "enchantments":[
-            {"name":"sword_enchant_1", "icon_path":"Assets/Tiles/Colored/tile_0010.png"},
-            {"name":"sword_enchant_2", "icon_path":"Assets/Tiles/Colored/tile_0011.png"}
+            {
+                "name":"Wood", 
+                "icon_path":"Assets/Tiles/Colored/tile_0008.png",
+                "completed_icon_path":"Assets/Custom/Check.png"
+            },
+            {
+                "name":"Steel", 
+                "icon_path":"Assets/Tiles/Colored/tile_0009.png",
+                "completed_icon_path":"Assets/Custom/Check.png"
+            }
         ]
     },
     {
         "name":"BOW",
         "materials":[
-            {"name":"wood", "icon_path":"Assets/Tiles/Colored/tile_0008.png"},
-            {"name":"string", "icon_path":"Assets/Tiles/Colored/tile_0012.png"}
-        ],
-        "enchantments":[
-            {"name":"bow_enchant_1", "icon_path":"Assets/Tiles/Colored/tile_0013.png"},
-            {"name":"bow_enchant_2", "icon_path":"Assets/Tiles/Colored/tile_0014.png"}
+            {
+                "name":"Wood", 
+                "icon_path":"Assets/Tiles/Colored/tile_0008.png",
+                "completed_icon_path":"Assets/Custom/Check.png"
+            },
+            {
+                "name":"String",
+                "icon_path":"Assets/Tiles/Colored/tile_0012.png",
+                "completed_icon_path":"Assets/Custom/Check.png"
+            }
         ]
     },
     {
         "name":"AX",
         "materials":[
-            {"name":"wood", "icon_path":"Assets/Tiles/Colored/tile_0008.png"},
-            {"name":"titanium", "icon_path":"Assets/Tiles/Colored/tile_0015.png"}
-        ],
-        "enchantments":[
-            {"name":"ax_enchant_1", "icon_path":"Assets/Tiles/Colored/tile_0016.png"},
-            {"name":"ax_enchant_2", "icon_path":"Assets/Tiles/Colored/tile_0017.png"}
+            {
+                "name":"Wood",
+                "icon_path":"Assets/Tiles/Colored/tile_0008.png",
+                "completed_icon_path":"Assets/Custom/Check.png"
+            },
+            {
+                "name":"Titanium",
+                "icon_path":"Assets/Tiles/Colored/tile_0015.png",
+                "completed_icon_path":"Assets/Custom/Check.png"
+            }
         ]
     }
 ]
