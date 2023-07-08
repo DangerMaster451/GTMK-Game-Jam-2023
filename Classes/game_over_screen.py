@@ -58,4 +58,39 @@ class Game_Over_Screen():
             self.surface.get_size()[0] / 2, 225
         )
         self.surface.blit(render_text, render_text_rect)
+
+        render_text = self.normal_font.render("Credits", True, (255,255,255), self.bg_color)
+        render_text_rect = render_text.get_rect()
+        render_text_rect.center = Vector2(
+            self.surface.get_size()[0] / 2, 300
+        )
+        self.surface.blit(render_text, render_text_rect)
+
+        render_text = self.small_font.render("Programers: Andrew Pelton and Tristan Krizan", True, (255,255,255), self.bg_color)
+        render_text_rect = render_text.get_rect()
+        render_text_rect.center = Vector2(
+            self.surface.get_size()[0] / 2, 325
+        )
+        self.surface.blit(render_text, render_text_rect)
+
+        render_text = self.small_font.render("Play Testers: Some awesome people", True, (255,255,255), self.bg_color)
+        render_text_rect = render_text.get_rect()
+        render_text_rect.center = Vector2(
+            self.surface.get_size()[0] / 2, 350
+        )
+        self.surface.blit(render_text, render_text_rect)
+
+        render_text = self.small_font.render("Art: Kenny", True, (255,255,255), self.bg_color)
+        render_text_rect = render_text.get_rect()
+        render_text_rect.center = Vector2(
+            self.surface.get_size()[0] / 2, 375
+        )
+        self.surface.blit(render_text, render_text_rect)
+
+        render_text = self.small_font.render("Music and Sound Design: Andrew Pelton", True, (255,255,255), self.bg_color)
+        render_text_rect = render_text.get_rect()
+        render_text_rect.center = Vector2(
+            self.surface.get_size()[0] / 2, 400
+        )
+        self.surface.blit(render_text, render_text_rect)
         
