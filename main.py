@@ -31,14 +31,23 @@ tasks = []
 npcs = []
 
 min_npcs = 1
-max_npcs = 12
+max_npcs = 4
 npc_spawn_chance = 3
+
+score = 0
+display_score = ""
+
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+timer = 60
+display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
 # Game Loop
 while True:
     for event in pygame.event.get():
+        if event.type == pygame.USEREVENT: 
+            timer -= 1
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
@@ -56,6 +65,7 @@ while True:
     grid.render()
     player.update()
 
+    # Update NPCs
     for npc in npcs:
         npc.update()
 
@@ -75,26 +85,34 @@ while True:
                 npcs.remove(npc)
                 del npc
 
+    # Display Tasks
     left_bar.display_text("Tasks", (255, 255, 255), 75)
     for index, _task in enumerate(tasks):
         left_bar.display_task(
             _task,
             grid,
             (255, 255, 0),
-            Vector2(75, 175 + 150 * index),
+            Vector2(75, 125*(index+1)),
             25,
             _task.check_if_task_completed(grid),
         )
 
-    right_bar.display_text("Player", (255, 255, 255), 75)
-    right_bar.display_text("Inventory", (255, 255, 255), 110)
-    right_bar.display_text(player.item, (255, 255, 0), 135, small_text=True)
+    # Display Text
+    right_bar.display_text("Score", (255, 255, 255), 75)
+    right_bar.display_text(display_score, (255, 255, 255), 100, small_text=True)
 
-    right_bar.display_text("Anvil", (255, 255, 255), 175)
-    right_bar.display_text("Inventory", (255, 255, 255), 210)
+    right_bar.display_text("Timer", (255, 255, 255), 135)
+    right_bar.display_text(display_timer, (255, 255, 255), 160, small_text=True)
+
+    right_bar.display_text("Player", (255, 255, 255), 275)
+    right_bar.display_text("Inventory", (255, 255, 255), 310)
+    right_bar.display_text(player.item, (255, 255, 0), 335, small_text=True)
+
+    right_bar.display_text("Anvil", (255, 255, 255), 375)
+    right_bar.display_text("Inventory", (255, 255, 255), 410)
 
     for index, item in enumerate(grid.get_anvil_inventories()[0]):
-        right_bar.display_text(item, (255, 255, 0), (235 + index * 20), small_text=True)
+        right_bar.display_text(item, (255, 255, 0), (435 + index*20), small_text=True)
 
     # Check for interactions
     for tile in interactable_tiles:
@@ -106,16 +124,28 @@ while True:
             else:
                 player.item = tile.item_name
 
+
     keys = pygame.key.get_pressed()
+
+    # Check for completed Tasks
     for _task in tasks:
         if _task.check_if_task_completed(grid):
             if keys[pygame.K_SPACE]:
                 tasks.remove(_task)
                 grid.clear_anvil_inventories()
+                score += 1000
+
+    # Update Display Score          
+    display_score = str(score)
+
+    # Update Display Timer
+    display_timer = str(timer)
+
+    # Clear Anvil Inventories
     if keys[pygame.K_q]:
         grid.clear_anvil_inventories()
 
-    # Render Game
+    # Render Game Display
     window.blit(game_display, (280, 0))
 
     # Render Side Bars
