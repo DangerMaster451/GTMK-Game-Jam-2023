@@ -11,6 +11,7 @@ from Classes.player import Player
 from Classes.npc import NPC
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
+from Classes.game_over_screen import Game_Over_Screen
 
 # ! Add delta time for player speed
 
@@ -36,19 +37,21 @@ grid = Grid(game_display, "grid_data.json", player)
 right_bar = Right_Bar(window, (1000, 0), (94, 129, 162))
 left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
 
+game_over_display = Game_Over_Screen(window)
+
 tasks = []
 npcs = []
 particles = []
 
 min_npcs = 1
 max_npcs = 4
-npc_spawn_chance = 3
+npc_spawn_chance = 1
 
 score = 0
 display_score = ""
 
 pygame.time.set_timer(pygame.USEREVENT, 1000)
-timer = 60
+timer = 2
 display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
@@ -75,9 +78,14 @@ while True:
     grid.render()
     player.update()
 
-    # Spawn Particles
+    # Spawn Player Particles
     if player.is_moving():
         particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
+
+    # Spawn NPC Particles
+    for npc in npcs:
+        if npc.state == "move" or npc.state == "leave":
+            particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), test_particle_image, Vector2(100,100), 75)
 
     # Render Particles
     for particle in particles: particle.update()
@@ -170,11 +178,15 @@ while True:
         grid.clear_anvil_inventories()
 
     # Render Game Display
-    window.blit(game_display, (280, 0))
+    if timer > 0:
+        window.blit(game_display, (280, 0))
 
-    # Render Side Bars
-    right_bar.render()
-    left_bar.render()
+        # Render Side Bars
+        right_bar.render()
+        left_bar.render()
+    else:
+        game_over_display.render(display_score)
+        window.blit(game_over_display.surface, (280, 0))
 
     pygame.display.flip()
     clock.tick(60)

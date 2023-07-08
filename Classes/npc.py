@@ -82,7 +82,7 @@ def try_spawn_npc(window, npcs:list[NPC], min:int, max:int, chance_per_frame:int
         npcs.insert(smallest_index, NPC(window, smallest_index)) # New NPC
     
     if len(npcs) < max:
-        if random.randint(0, 100-chance_per_frame) == 0:
+        if random.randint(0, 1000-chance_per_frame) == 0:
             npcs.insert(smallest_index, NPC(window, smallest_index)) # New NPC
     
     return npcs # Return updated list
