@@ -76,7 +76,8 @@ while True:
     player.update()
 
     # Spawn Particles
-    particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
+    if player.is_moving():
+        particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
 
     # Render Particles
     for particle in particles: particle.update()

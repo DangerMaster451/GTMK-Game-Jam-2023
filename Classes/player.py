@@ -95,7 +95,17 @@ class Player(pygame.sprite.Sprite):
                 self.position.y -= self.speed / 2
             self.wobble_value += 1
 
+
+    def is_moving(self) -> bool:
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_w] or keys[pygame.K_s] or keys[pygame.K_a] or keys[pygame.K_d]:
+            return True
+        else:
+            return False
+
     def render(self) -> None:
+        if self.is_moving() == False:
+            self.wobble_value = 0
         render_image = pygame.transform.rotate(
             self.image, math.sin(self.wobble_value / 5) * 10
         )
