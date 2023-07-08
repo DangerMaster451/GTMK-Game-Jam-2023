@@ -34,8 +34,8 @@ class Side_Bar():
         self.sideBar_surface.blit(material_text, material_text_rect)
 
         # Render Material Icons
-        for index, material_icon in enumerate(task.materials):
-            position_x = (self.sideBar_surface.get_size()[0] / (len(task.materials)+1) * (index+1)) - material_icon.get_size()[0]/2
+        for index, material_icon in enumerate(task.material_icons):
+            position_x = (self.sideBar_surface.get_size()[0] / (len(task.material_icons)+1) * (index+1)) - material_icon.get_size()[0]/2
             self.sideBar_surface.blit(material_icon, (position_x, position.y+spacing*2))
 
         # Render Enchantments Heading
@@ -45,11 +45,10 @@ class Side_Bar():
         self.sideBar_surface.blit(enchantments_text, enchantments_text_rect)
 
         # Render Enchantment Icons
-        for index, enchantment_icon in enumerate(task.enchantments):
-            position_x = (self.sideBar_surface.get_size()[0] / (len(task.enchantments)+1) * (index+1)) - enchantment_icon.get_size()[0]/2
+        for index, enchantment_icon in enumerate(task.enchantment_icons):
+            position_x = (self.sideBar_surface.get_size()[0] / (len(task.enchantment_icons)+1) * (index+1)) - enchantment_icon.get_size()[0]/2
             self.sideBar_surface.blit(enchantment_icon, (position_x, position.y+spacing*4.5))
         
-
     def render(self):
         self.window.blit(self.sideBar_surface, self.sideBar_rect)
 
