@@ -26,7 +26,7 @@ grid = Grid(game_display, "grid_data.json", player)
 right_bar = Right_Bar(window, (1000, 0), (94, 129, 162))
 left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
 
-tasks = [task.new_task("items.json", (25, 25)), task.new_task("items.json", (25, 25))]
+tasks = []
 npcs = [NPC(game_display)]
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
@@ -48,7 +48,14 @@ while True:
     grid.render()
     player.update()
 
-    for npc in npcs: npc.update()
+    for npc in npcs:
+        npc.update()
+
+        if npc.state == "start_order":
+            tasks.append(task.new_task("items.json", (25,25)))
+        if npc.state == "delete":
+            npcs.remove(npc)
+            del npc
 
     left_bar.display_text("Tasks", (255, 255, 255), 75)
     for index, _task in enumerate(tasks):
