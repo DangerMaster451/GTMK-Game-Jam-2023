@@ -5,6 +5,7 @@ from sys import exit
 import Classes.task as task
 from Classes.tiles import *
 from Classes.player import Player
+from Classes.npc import NPC
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
 
@@ -26,6 +27,7 @@ right_bar = Right_Bar(window, (1000, 0), (94, 129, 162))
 left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
 
 tasks = [task.new_task("items.json", (25, 25)), task.new_task("items.json", (25, 25))]
+npcs = [NPC(game_display)]
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
@@ -45,6 +47,8 @@ while True:
     # Render Sprites
     grid.render()
     player.update()
+
+    for npc in npcs: npc.update()
 
     left_bar.display_text("Tasks", (255, 255, 255), 75)
     for index, _task in enumerate(tasks):
@@ -77,12 +81,14 @@ while True:
             else:
                 player.item = tile.item_name
 
+    keys = pygame.key.get_pressed()
     for _task in tasks:
         if _task.check_if_task_completed(grid):
-            keys = pygame.key.get_pressed()
             if keys[pygame.K_SPACE]:
                 tasks.remove(_task)
                 grid.clear_anvil_inventories()
+    if keys[pygame.K_q]:
+        grid.clear_anvil_inventories()
 
     # Render Game
     window.blit(game_display, (280, 0))
