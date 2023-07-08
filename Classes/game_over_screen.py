@@ -7,11 +7,21 @@ class Game_Over_Screen():
         self.window = window
         self.surface = pygame.surface.Surface((720, 720))
         self.surface.fill(self.bg_color)
-        #self.sideBar_rect = self.surface.get_rect(topleft=(280,0))
         self.normal_font = pygame.font.Font("Assets/Fonts/PixelFont.ttf", 24)
         self.small_font = pygame.font.Font("Assets/Fonts/PixelFont.ttf", 12)
 
+        with open("high_score.txt", "r") as high_score_file:
+            self.high_score = high_score_file.read()
+
+    def update_high_score(self, score:int):
+        if score > self.high_score:
+            with open("high_score.txt", "w") as high_score_file:
+                high_score_file.write(str(score))
+                self.high_score = score
+
+
     def render(self, score:str):
+        self.update_high_score(score)
         self.surface.fill(self.bg_color)
 
         render_text = self.normal_font.render("GAME OVER", True, (255,255,255), self.bg_color)
@@ -42,7 +52,7 @@ class Game_Over_Screen():
         )
         self.surface.blit(render_text, render_text_rect)
 
-        render_text = self.small_font.render("1000", True, (255,255,255), self.bg_color)
+        render_text = self.small_font.render(self.high_score, True, (255,255,255), self.bg_color)
         render_text_rect = render_text.get_rect()
         render_text_rect.center = Vector2(
             self.surface.get_size()[0] / 2, 225

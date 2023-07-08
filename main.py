@@ -1,4 +1,5 @@
 import pygame
+import random
 from pygame.math import Vector2
 from sys import exit
 
@@ -7,6 +8,7 @@ import Classes.npc as npc_module
 import Classes.particles as particles_module
 from Classes.tiles import *
 from Classes.particles import Particle
+from Classes.item import Item
 from Classes.player import Player
 from Classes.npc import NPC
 from Classes.grid import Grid
@@ -26,9 +28,13 @@ clock = pygame.time.Clock()
 
 # Load Sound FX
 anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
+step_fx = [
+    pygame.mixer.Sound("Assets/SoundFX/Step 1.wav"),
+    #pygame.mixer.Sound("Assets/SoundFX/Step 2.wav")
+]
 
 # ! Remove
-test_particle_image = pygame.image.load("Assets/Images/Tiles/Tiles.png")
+test_particle_image = pygame.image.load("Assets/Images/Tiles/Anvil_Left.png")
 
 # Create Objects
 player = Player(game_display)
@@ -57,8 +63,10 @@ display_timer = ""
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
 # Start Music
-pygame.mixer_music.load("Assets/Music/Theme.wav")
-pygame.mixer_music.play(-1)
+# pygame.mixer_music.load("Assets/Music/Theme.wav")
+# pygame.mixer_music.play(-1)
+
+pickup = Item(game_display, Vector2(0,0), test_particle_image, (50,50))
 
 # Game Loop
 while True:
@@ -78,8 +86,9 @@ while True:
     # Spawn NPCs
     npcs = npc_module.try_spawn_npc(game_display, npcs, min_npcs, max_npcs, npc_spawn_chance)
 
-    # Render Sprites
+    # Render Sprites    
     grid.render()
+    pickup.update(player.position, player.item_texture)
     player.update()
 
     # Spawn Player Particles
@@ -92,7 +101,7 @@ while True:
             particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), test_particle_image, Vector2(100,100), 75)
 
     # Render Particles
-    for particle in particles: particle.update()
+    for particle in particles: particle.update() 
 
     # Remove unused Particles
     for particle in particles:
@@ -157,9 +166,10 @@ while True:
                     anvil_fx.play()
                     tile.inventory.append(player.item)
                 player.item = None
+                player.item_texture = None
             else:
                 player.item = tile.item_name
-
+                player.item_texture = tile.image
 
     keys = pygame.key.get_pressed()
 
