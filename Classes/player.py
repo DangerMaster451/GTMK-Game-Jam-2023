@@ -13,7 +13,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(
             pygame.image.load("Assets/Images/Sprites/Player.png"), (50, 50)
         )
-        self.speed = 5
+        self.speed = 7
         self.wobble_value = 0
         self.limit_position = Vector2(135, 135)
         self.limit_size = Vector2(405, 405)

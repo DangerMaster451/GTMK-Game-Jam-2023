@@ -1,18 +1,20 @@
 import pygame
 import math
+import random
 from pygame.math import Vector2
 
 class NPC(pygame.sprite.Sprite):
-    def __init__(self, window:pygame.surface.Surface):
+    def __init__(self, window:pygame.surface.Surface, index):
         self.window = window
         self.position = Vector2(650, 0)
         self.image = pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_1.png"), (50,50))
         self.order_image = pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_1_order.png"), (50,50))
         self.state = "move"
-        self.speed = 1
+        self.speed = 3
         self.wobble_value = 0
         self.start_order_frame = 0
         self.current_frame = 0
+        self.index = index
 
     def update(self):
         match self.state:
@@ -32,14 +34,13 @@ class NPC(pygame.sprite.Sprite):
     def move(self):
         self.position.y += self.speed
         self.wobble_value += 1
-        if self.position.y > 360:
+        if self.position.y > 580 - self.index*45:
             self.state = "start_order"
-            self.start_order_frame = self.current_frame     
+            self.start_order_frame = self.current_frame
 
     def start_order(self):
         # play sound effect
         self.wobble_value = 0
-        print("starting order...")
         self.state = "order"
 
     def order(self):          
@@ -64,3 +65,24 @@ class NPC(pygame.sprite.Sprite):
                 self.image, math.sin(self.wobble_value / 5) * 10
             )
             self.window.blit(render_image, self.position)
+
+
+def try_spawn_npc(window, npcs:list[NPC], min:int, max:int, chance_per_frame:int) -> list[NPC]:
+    used_indexes = []
+    smallest_index = len(npcs)
+    for npc in npcs:
+        used_indexes.append(npc.index)
+    
+    for index in range(len(used_indexes)):
+        if not index in used_indexes:
+            smallest_index = index
+            break
+
+    if len(npcs) < min:
+        npcs.insert(smallest_index, NPC(window, smallest_index)) # New NPC
+    
+    if len(npcs) < max:
+        if random.randint(0, 100-chance_per_frame) == 0:
+            npcs.insert(smallest_index, NPC(window, smallest_index)) # New NPC
+    
+    return npcs # Return updated list

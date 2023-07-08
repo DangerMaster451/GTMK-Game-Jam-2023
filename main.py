@@ -2,7 +2,8 @@ import pygame
 from pygame.math import Vector2
 from sys import exit
 
-import Classes.task as task
+import Classes.task as task_module
+import Classes.npc as npc_module
 from Classes.tiles import *
 from Classes.player import Player
 from Classes.npc import NPC
@@ -27,7 +28,11 @@ right_bar = Right_Bar(window, (1000, 0), (94, 129, 162))
 left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
 
 tasks = []
-npcs = [NPC(game_display)]
+npcs = []
+
+min_npcs = 1
+max_npcs = 12
+npc_spawn_chance = 3
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
@@ -44,6 +49,9 @@ while True:
     right_bar.sideBar_surface.fill(right_bar.bg_color)
     game_display.fill((94, 129, 162))
 
+    # Spawn NPCs
+    npcs = npc_module.try_spawn_npc(game_display, npcs, min_npcs, max_npcs, npc_spawn_chance)
+
     # Render Sprites
     grid.render()
     player.update()
@@ -51,19 +59,21 @@ while True:
     for npc in npcs:
         npc.update()
 
-        if npc.state == "start_order":
-            tasks.append(task.new_task(npc, "items.json", (25,25)))
-        if npc.state == "wait":
-            match = False
-            for _task in tasks:
-                if _task.npc == npc:
-                    match = True
-            if match == False:
-                npc.state = "leave"
+        match npc.state:
+            case "start_order":
+                tasks.append(task_module.new_task(npc, "items.json", (25,25)))
 
-        if npc.state == "delete":
-            npcs.remove(npc)
-            del npc
+            case "wait":
+                match = False
+                for _task in tasks:
+                    if _task.npc == npc:
+                        match = True
+                if match == False:
+                    npc.state = "leave"
+
+            case "delete":
+                npcs.remove(npc)
+                del npc
 
     left_bar.display_text("Tasks", (255, 255, 255), 75)
     for index, _task in enumerate(tasks):
