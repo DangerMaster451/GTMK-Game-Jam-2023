@@ -1,4 +1,5 @@
 import pygame
+from pygame.math import Vector2
 from sys import exit
 
 from Classes.player import Player
@@ -29,6 +30,7 @@ right_bar = Right_Bar(window, (1000,0), (94,129,162))
 left_bar = Left_Bar(window, (0,0), (94,129,162))
 
 test_task = Task("Sword", [wood_icon, iron_icon], [snake_icon, mouse_icon, crab_icon])
+test_task2 = Task("Ax", [iron_icon], [ crab_icon, mouse_icon])
 
 # Game Loop
 while True:
@@ -45,10 +47,11 @@ while True:
     grid.render()
     player.update()
 
-    left_bar.display_text("Hi", (255,255,255), 75)
-    right_bar.display_text("Hello", (255,255,255), 175)
+    left_bar.display_text("Task 1", (255,255,255), 75)
+    right_bar.display_text("Task 2", (255,255,255), 75)
 
-    left_bar.display_task(test_task, (255,255,0), 175)
+    left_bar.display_task(test_task, (255,255,0), Vector2(75, 175), 25)
+    right_bar.display_task(test_task2, (255,0,255), Vector2(75, 175), 25)
     
     right_bar.render()
     left_bar.render()
