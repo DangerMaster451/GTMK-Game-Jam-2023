@@ -12,7 +12,6 @@ from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
 from Classes.end_screen import Game_Over_Screen
 from Classes.start_screen import Start_Screen
-from Classes.help_screen import Help_Screen
 
 # Basic Setup
 pygame.init()
@@ -40,7 +39,6 @@ ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
 # Create Objects
 game_state = "Start"
 start_display = Start_Screen(window)
-help_display = Help_Screen(window)
 game_display = pygame.surface.Surface((720, 720))
 game_over_display = Game_Over_Screen(window)
 
@@ -202,12 +200,6 @@ while True:
         case "Start":
             start_display.render()
             window.blit(start_display.surface, (0,0))
-
-            if keys[pygame.K_SPACE]:
-                game_state = "Help"
-        case "Help":
-            help_display.render()
-            window.blit(help_display.surface, (0,0))
 
             if keys[pygame.K_w]:
                 game_state = "Game"
