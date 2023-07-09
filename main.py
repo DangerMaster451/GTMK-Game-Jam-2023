@@ -25,10 +25,7 @@ clock = pygame.time.Clock()
 
 # Load Sound FX
 anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
-step_fx = [
-    pygame.mixer.Sound("Assets/SoundFX/Step 1.wav"),
-    #pygame.mixer.Sound("Assets/SoundFX/Step 2.wav")
-]
+
 # Load Assets
 grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
 player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
@@ -54,7 +51,7 @@ particles = []
 
 min_npcs = 1
 max_npcs = 4
-npc_spawn_chance = 5
+npc_spawn_chance = 10
 
 score = 0
 display_score = ""
@@ -172,7 +169,7 @@ while True:
                         player.item_texture = None
                     else:
                         player.item = tile.item_name
-                        player.item_texture = tile.item_texture        
+                        player.item_texture = tile.item_texture
 
         # Check for completed Tasks
         for _task in tasks:
