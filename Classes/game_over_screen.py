@@ -3,7 +3,7 @@ from pygame.math import Vector2
 
 class Game_Over_Screen():
     def __init__(self, window):
-        self.bg_color = (94-25, 129-25, 162-25)
+        self.bg_color = (94, 129, 162)
         self.window = window
         self.surface = pygame.surface.Surface((1280, 720))
         self.surface.fill(self.bg_color)

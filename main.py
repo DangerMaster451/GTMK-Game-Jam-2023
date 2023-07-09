@@ -13,8 +13,6 @@ from Classes.side_bars import Left_Bar, Right_Bar
 from Classes.game_over_screen import Game_Over_Screen
 from Classes.start_screen import Start_Screen
 
-# ! Add delta time for player speed
-
 # Basic Setup
 pygame.init()
 pygame.mixer.init()
@@ -32,15 +30,15 @@ step_fx = [
     #pygame.mixer.Sound("Assets/SoundFX/Step 2.wav")
 ]
 
-# ! Remove
-test_particle_image = pygame.image.load("Assets/Images/Tiles/Anvil_Left.png")
+grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
+player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
 
 # Create Objects
 player = Player(game_display)
 grid = Grid(game_display, "grid_data.json", player)
 
-right_bar = Right_Bar(window, (1000, 0), (94, 129, 162))
-left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
+right_bar = Right_Bar(window, (1000, 0), (78, 156, 230))
+left_bar = Left_Bar(window, (0, 0), (78, 156, 230))
 
 game_over_display = Game_Over_Screen(window)
 start_display = Start_Screen(window)
@@ -65,10 +63,12 @@ interactable_tiles = grid.get_interactable_tiles_in_scene()
 game_state = "Start"
 
 # Start Music
-# pygame.mixer_music.load("Assets/Music/Theme.wav")
-# pygame.mixer_music.play(-1)
+#pygame.mixer_music.load("Assets/Music/Theme.wav")
+#pygame.mixer_music.play(-1)
 
-pickup = Item(game_display, Vector2(0,0), test_particle_image, (50,50))
+ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
+
+pickup = Item(game_display, Vector2(0,0), grass_particle, (50,50))
 
 # Game Loop
 while True:
@@ -96,12 +96,12 @@ while True:
 
         # Spawn Player Particles
         if player.is_moving():
-            particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
+            particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), player_particle, Vector2(100,100), 75)
 
         # Spawn NPC Particles
         for npc in npcs:
             if npc.state == "move" or npc.state == "leave":
-                particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), test_particle_image, Vector2(100,100), 75)
+                particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), grass_particle, Vector2(100,100), 75)
 
         # Render Particles
         for particle in particles: particle.update() 
@@ -204,6 +204,7 @@ while True:
 
             if keys[pygame.K_SPACE]:
                 game_state = "Game"
+                ticking.play()
         case "Game":
             window.blit(game_display, (280, 0))
             right_bar.render()
