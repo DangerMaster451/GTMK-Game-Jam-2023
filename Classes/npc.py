@@ -10,7 +10,7 @@ class NPC(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_1.png"), (50,50))
         self.order_image = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/speechBubble.png"), (50,50))
         self.state = "move"
-        self.speed = 3
+        self.speed = 7
         self.wobble_value = 0
         self.start_order_frame = 0
         self.current_frame = 0
