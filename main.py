@@ -25,10 +25,7 @@ clock = pygame.time.Clock()
 
 # Load Sound FX
 anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
-step_fx = [
-    pygame.mixer.Sound("Assets/SoundFX/Step 1.wav"),
-    #pygame.mixer.Sound("Assets/SoundFX/Step 2.wav")
-]
+
 # Load Assets
 grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
 player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
@@ -54,7 +51,7 @@ particles = []
 
 min_npcs = 1
 max_npcs = 4
-npc_spawn_chance = 5
+npc_spawn_chance = 10
 
 score = 0
 display_score = ""
@@ -66,6 +63,19 @@ display_timer = ""
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
 pickup = Item(game_display, Vector2(0,0), grass_particle, (35,35))
+
+def reset():
+    global tasks
+    tasks = []
+    global npcs
+    npcs = []
+    global particles
+    particles = []
+    global score
+    score = 0
+    global timer
+    timer = 60
+
 
 # Game Loop
 while True:
@@ -172,7 +182,7 @@ while True:
                         player.item_texture = None
                     else:
                         player.item = tile.item_name
-                        player.item_texture = tile.item_texture        
+                        player.item_texture = tile.item_texture
 
         # Check for completed Tasks
         for _task in tasks:
@@ -203,6 +213,7 @@ while True:
 
             if keys[pygame.K_w]:
                 game_state = "Game"
+                reset()
                 ticking.play()
         case "Game":
             window.blit(game_display, (280, 0))
@@ -214,6 +225,9 @@ while True:
         case "End":
             game_over_display.render(display_score)
             window.blit(game_over_display.surface, (0, 0))
+
+            if keys[pygame.K_SPACE]:
+                game_state = "Start"
 
     pygame.display.flip()
     clock.tick(60)
