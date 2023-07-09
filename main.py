@@ -71,7 +71,7 @@ pickup = Item(game_display, Vector2(0,0), grass_particle, (35,35))
 # Game Loop
 while True:
     for event in pygame.event.get():
-        if event.type == pygame.USEREVENT: 
+        if event.type == pygame.USEREVENT and game_state == "Game": 
             timer -= 1
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -207,6 +207,7 @@ while True:
         case "Help":
             help_display.render()
             window.blit(help_display.surface, (0,0))
+
             if keys[pygame.K_w]:
                 game_state = "Game"
                 ticking.play()
