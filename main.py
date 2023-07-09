@@ -51,7 +51,7 @@ particles = []
 
 min_npcs = 1
 max_npcs = 4
-npc_spawn_chance = 10
+npc_spawn_chance = 5
 
 score = 0
 display_score = ""
@@ -162,7 +162,7 @@ while True:
                 _task,
                 grid,
                 (255, 255, 0),
-                Vector2(75, 175*(index+1)),
+                Vector2(75, 125*(index+1)+75),
                 25,
                 _task.check_if_task_completed(grid),
             )

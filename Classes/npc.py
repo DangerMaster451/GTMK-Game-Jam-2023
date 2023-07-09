@@ -7,14 +7,22 @@ class NPC(pygame.sprite.Sprite):
     def __init__(self, window:pygame.surface.Surface, index):
         self.window = window
         self.position = Vector2(650, 0)
-        self.image = pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_1.png"), (50,50))
+        self.image = self.get_image()
         self.order_image = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/speechBubble.png"), (50,50))
         self.state = "move"
-        self.speed = 7
+        self.speed = 10
         self.wobble_value = 0
         self.start_order_frame = 0
         self.current_frame = 0
         self.index = index
+
+    def get_image(self) -> pygame.surface.Surface:
+        images = [
+            pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_1.png"), (50,50)),
+            pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_2.png"), (50,50)),
+            pygame.transform.scale(pygame.image.load("Assets/Images/Sprites/NPC_3.png"), (50,50))
+                  ]
+        return images[random.randint(0,len(images)-1)]
 
     def update(self):
         match self.state:
@@ -83,7 +91,7 @@ def try_spawn_npc(window, npcs:list[NPC], min:int, max:int, chance_per_frame:int
         npcs.insert(smallest_index, NPC(window, smallest_index)) # New NPC
     
     if len(npcs) < max:
-        if random.randint(0, 1000-chance_per_frame) == 0:
+        if random.randint(0, 100-chance_per_frame) == 0:
             npcs.insert(smallest_index, NPC(window, smallest_index)) # New NPC
     
     return npcs # Return updated list
