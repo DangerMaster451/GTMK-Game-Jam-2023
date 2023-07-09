@@ -1,5 +1,4 @@
 import pygame
-import random
 from pygame.math import Vector2
 from sys import exit
 
@@ -7,13 +6,12 @@ import Classes.task as task_module
 import Classes.npc as npc_module
 import Classes.particles as particles_module
 from Classes.tiles import *
-from Classes.particles import Particle
 from Classes.item import Item
 from Classes.player import Player
-from Classes.npc import NPC
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
 from Classes.game_over_screen import Game_Over_Screen
+from Classes.start_screen import Start_Screen
 
 # ! Add delta time for player speed
 
@@ -23,7 +21,8 @@ pygame.mixer.init()
 DEFAULT_RESOLUTION = (1280, 720)
 window = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
 game_display = pygame.surface.Surface((720, 720))
-pygame.display.set_caption("Shopkeeper - GMTK Game Jam Entry 2023")
+pygame.display.set_caption("\"The Hero's Blacksmith\" - GMTK Game Jam Entry 2023")
+pygame.display.set_icon(pygame.image.load("Assets/Images/Logo/Logo_Icon.png"))
 clock = pygame.time.Clock()
 
 # Load Sound FX
@@ -44,6 +43,7 @@ right_bar = Right_Bar(window, (1000, 0), (94, 129, 162))
 left_bar = Left_Bar(window, (0, 0), (94, 129, 162))
 
 game_over_display = Game_Over_Screen(window)
+start_display = Start_Screen(window)
 
 tasks = []
 npcs = []
@@ -57,10 +57,12 @@ score = 0
 display_score = ""
 
 pygame.time.set_timer(pygame.USEREVENT, 1000)
-timer = 2
+timer = 60
 display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
+
+game_state = "Start"
 
 # Start Music
 # pygame.mixer_music.load("Assets/Music/Theme.wav")
@@ -191,16 +193,20 @@ while True:
     if keys[pygame.K_q]:
         grid.clear_anvil_inventories()
 
-    # Render Game Display
-    if timer > 0:
-        window.blit(game_display, (280, 0))
 
-        # Render Side Bars
-        right_bar.render()
-        left_bar.render()
-    else:
-        game_over_display.render(display_score)
-        window.blit(game_over_display.surface, (280, 0))
+    # Render Final Surfaces
+    match game_state:
+        case "Start":
+            start_display.render()
+            window.blit(start_display.surface, (0,0))
+        case "Game":
+            window.blit(game_display, (280, 0))
+            right_bar.render()
+            left_bar.render()
+        case "End":
+            game_over_display.render(display_score)
+            window.blit(game_over_display.surface, (280, 0))
+        
 
     pygame.display.flip()
     clock.tick(60)

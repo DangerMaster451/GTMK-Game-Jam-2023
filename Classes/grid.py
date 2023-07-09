@@ -4,7 +4,6 @@ import json
 
 from Classes.tiles import *
 
-
 class Grid:
     def __init__(self, window: pygame.surface.Surface, file_path: str, player) -> None:
         self.tiles = []
