@@ -34,6 +34,7 @@ step_fx = [
 grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
 player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
 tool_tip_e = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_e.png"), (50,50))
+tool_tip_space = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_space.png"), (100,50))
 ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
 
 # Create Objects
@@ -178,10 +179,11 @@ while True:
         # Check for completed Tasks
         for _task in tasks:
             if _task.check_if_task_completed(grid):
+                game_display.blit(tool_tip_space, Vector2(player.position.x - 25, player.position.y + 60))
                 if keys[pygame.K_SPACE]:
                     tasks.remove(_task)
                     grid.clear_anvil_inventories()
-                    score += 1000
+                    score += 1
 
         # Update Display Score          
         display_score = str(score)
