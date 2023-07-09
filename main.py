@@ -27,8 +27,8 @@ clock = pygame.time.Clock()
 anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
 
 # Load Assets
-grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
-player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
+grass_particle = pygame.image.load("Assets/Images/Particles/Grass_Particle.png")
+player_particle = pygame.image.load("Assets/Images/Particles/Player_Particle.png")
 tool_tip_e = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_e.png"), (50,50))
 tool_tip_space = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_space.png"), (100,50))
 ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
