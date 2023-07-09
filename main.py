@@ -19,7 +19,7 @@ pygame.mixer.init()
 DEFAULT_RESOLUTION = (1280, 720)
 window = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
 
-pygame.display.set_caption("\"The Hero's Blacksmith\" - GMTK Game Jam Entry 2023")
+pygame.display.set_caption('"The Hero\'s Blacksmith" - GMTK Game Jam Entry 2023')
 pygame.display.set_icon(pygame.image.load("Assets/Images/Logo/Logo_Icon.png"))
 clock = pygame.time.Clock()
 
@@ -29,8 +29,12 @@ anvil_fx = pygame.mixer.Sound("Assets/SoundFX/Anvil.wav")
 # Load Assets
 grass_particle = pygame.image.load("Assets/Images/Particles/Grass_Particle.png")
 player_particle = pygame.image.load("Assets/Images/Particles/Player_Particle.png")
-tool_tip_e = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_e.png"), (50,50))
-tool_tip_space = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_space.png"), (100,50))
+tool_tip_e = pygame.transform.scale(
+    pygame.image.load("Assets/Images/Icons/tool_tip_e.png"), (50, 50)
+)
+tool_tip_space = pygame.transform.scale(
+    pygame.image.load("Assets/Images/Icons/tool_tip_space.png"), (100, 50)
+)
 ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
 
 # Create Objects
@@ -63,7 +67,8 @@ display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
-pickup = Item(game_display, Vector2(0,0), player)
+pickup = Item(game_display, Vector2(0, 0), player)
+
 
 def reset():
     global tasks
@@ -79,10 +84,11 @@ def reset():
     global timer
     timer = 60
 
+
 # Game Loop
 while True:
     for event in pygame.event.get():
-        if event.type == pygame.USEREVENT and game_state == "Game": 
+        if event.type == pygame.USEREVENT and game_state == "Game":
             timer -= 1
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -96,25 +102,43 @@ while True:
         game_display.fill((94, 129, 162))
 
         # Spawn NPCs
-        npcs = npc_module.try_spawn_npc(game_display, npcs, min_npcs, max_npcs, npc_spawn_chance)
+        npcs = npc_module.try_spawn_npc(
+            game_display, npcs, min_npcs, max_npcs, npc_spawn_chance
+        )
 
-        # Render Sprites    
+        # Render Sprites
         grid.render()
         pickup.update(player.item_texture)
-        for weapon in weapons: weapon.update()
+        for weapon in weapons:
+            weapon.update()
         player.update()
 
         # Spawn Player Particles
         if player.is_moving():
-            particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), player_particle, Vector2(100,100), 75)
+            particles = particles_module.spawn_particles(
+                game_display,
+                particles,
+                Vector2(player.position.x + 25, player.position.y + 45),
+                player_particle,
+                Vector2(100, 100),
+                75,
+            )
 
         # Spawn NPC Particles
         for npc in npcs:
             if npc.state == "move" or npc.state == "leave":
-                particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), grass_particle, Vector2(100,100), 75)
+                particles = particles_module.spawn_particles(
+                    game_display,
+                    particles,
+                    Vector2(npc.position.x + 25, npc.position.y + 45),
+                    grass_particle,
+                    Vector2(100, 100),
+                    75,
+                )
 
         # Render Particles
-        for particle in particles: particle.update() 
+        for particle in particles:
+            particle.update()
 
         # Remove unused Particles
         for particle in particles:
@@ -128,7 +152,7 @@ while True:
 
             match npc.state:
                 case "start_order":
-                    tasks.append(task_module.new_task(npc, "items.json", (25,25)))
+                    tasks.append(task_module.new_task(npc, "items.json", (25, 25)))
 
                 case "wait":
                     match = False
@@ -156,7 +180,9 @@ while True:
         right_bar.display_text("Inventory", (255, 255, 255), 410)
 
         for index, item in enumerate(grid.get_anvil_inventories()[0]):
-            right_bar.display_text(item, (255, 255, 0), (435 + index*20), small_text=True)
+            right_bar.display_text(
+                item, (255, 255, 0), (435 + index * 20), small_text=True
+            )
 
         # Display Tasks
         left_bar.display_text("Tasks", (255, 255, 255), 125)
@@ -165,7 +191,7 @@ while True:
                 _task,
                 grid,
                 (255, 255, 0),
-                Vector2(75, 125*(index+1)+75),
+                Vector2(75, 125 * (index + 1) + 75),
                 25,
                 _task.check_if_task_completed(grid),
             )
@@ -175,7 +201,9 @@ while True:
         # Check for interactions
         for tile in interactable_tiles:
             if tile.check_interaction(player):
-                game_display.blit(tool_tip_e, Vector2(player.position.x, player.position.y - 65))
+                game_display.blit(
+                    tool_tip_e, Vector2(player.position.x, player.position.y - 65)
+                )
                 if keys[pygame.K_e]:
                     if type(tile) == Anvil_Left:
                         if player.item not in tile.inventory and player.item != None:
@@ -190,15 +218,26 @@ while True:
         # Check for completed Tasks
         for _task in tasks:
             if _task.check_if_task_completed(grid):
-                game_display.blit(tool_tip_space, Vector2(player.position.x - 25, player.position.y + 60))
+                game_display.blit(
+                    tool_tip_space,
+                    Vector2(player.position.x - 25, player.position.y + 60),
+                )
                 if keys[pygame.K_SPACE]:
                     tasks.remove(_task)
                     grid.clear_anvil_inventories()
                     score += 1
-                    
-                    weapons.append(Item(game_display, player.position, _task.npc, _task.weapon_icon, (35,35)))
 
-        # Update Display Score          
+                    weapons.append(
+                        Item(
+                            game_display,
+                            player.position,
+                            _task.npc,
+                            _task.weapon_icon,
+                            (35, 35),
+                        )
+                    )
+
+        # Update Display Score
         display_score = str(score)
 
         # Update Display Timer
@@ -208,13 +247,12 @@ while True:
         if keys[pygame.K_q]:
             grid.clear_anvil_inventories()
 
-
     # Render Final Surfaces
     keys = pygame.key.get_pressed()
     match game_state:
         case "Start":
             start_display.render()
-            window.blit(start_display.surface, (0,0))
+            window.blit(start_display.surface, (0, 0))
 
             if keys[pygame.K_w]:
                 game_state = "Game"

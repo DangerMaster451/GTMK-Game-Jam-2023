@@ -44,13 +44,18 @@ class Side_Bar:
         center_x = self.sideBar_surface.get_size()[0] / 2
 
         # Render Weapon Type
-        weapon_text = self.normal_font.render(task.weapon_type, True, text_color, self.bg_color)
+        weapon_text = self.normal_font.render(
+            task.weapon_type, True, text_color, self.bg_color
+        )
         weapon_text_rect = weapon_text.get_rect()
         weapon_text_rect.center = Vector2(center_x, position.y)
         self.sideBar_surface.blit(weapon_text, weapon_text_rect)
 
         # Render Weapon Icon
-        self.sideBar_surface.blit(pygame.transform.scale(task.weapon_icon, (25,25)), Vector2(weapon_text_rect.x - 50, position.y - 10))
+        self.sideBar_surface.blit(
+            pygame.transform.scale(task.weapon_icon, (25, 25)),
+            Vector2(weapon_text_rect.x - 50, position.y - 10),
+        )
 
         # Render Materials Heading
         material_text = self.small_font.render(

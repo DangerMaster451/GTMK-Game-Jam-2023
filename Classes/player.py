@@ -55,9 +55,7 @@ class Player(pygame.sprite.Sprite):
             if self.check_for_collisions():
                 self.position.x += self.speed
             self.wobble_value += 1
-        elif (
-            keys[pygame.K_d] and not keys[pygame.K_w] and not keys[pygame.K_s]
-        ):  # right
+        elif (keys[pygame.K_d] and not keys[pygame.K_w] and not keys[pygame.K_s]):  # right
             self.position.x += self.speed
             if self.check_for_collisions():
                 self.position.x -= self.speed
@@ -77,25 +75,20 @@ class Player(pygame.sprite.Sprite):
                 self.position.x -= self.speed / 2
                 self.position.y += self.speed / 2
             self.wobble_value += 1
-        elif (
-            keys[pygame.K_s] and keys[pygame.K_a] and not keys[pygame.K_d]
-        ):  # down left
+        elif (keys[pygame.K_s] and keys[pygame.K_a] and not keys[pygame.K_d]): # down left
             self.position.x -= self.speed / 2
             self.position.y += self.speed / 2
             if self.check_for_collisions():
                 self.position.x += self.speed / 2
                 self.position.y -= self.speed / 2
             self.wobble_value += 1
-        elif (
-            keys[pygame.K_s] and keys[pygame.K_d] and not keys[pygame.K_a]
-        ):  # down right
+        elif (keys[pygame.K_s] and keys[pygame.K_d] and not keys[pygame.K_a]): # down right
             self.position.x += self.speed / 2
             self.position.y += self.speed / 2
             if self.check_for_collisions():
                 self.position.x -= self.speed / 2
                 self.position.y -= self.speed / 2
             self.wobble_value += 1
-
 
     def is_moving(self) -> bool:
         keys = pygame.key.get_pressed()

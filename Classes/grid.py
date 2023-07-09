@@ -4,6 +4,7 @@ import json
 
 from Classes.tiles import *
 
+
 class Grid:
     def __init__(self, window: pygame.surface.Surface, file_path: str, player) -> None:
         self.tiles = []
@@ -27,9 +28,7 @@ class Grid:
                     for tile_json_object in map:
                         if tile_json_object["data_index"] == value:
                             # Create new tile object
-                            position = Vector2(
-                                tile_size.x * column_index, tile_size.y * row_index
-                            )
+                            position = Vector2(tile_size.x * column_index, tile_size.y * row_index)
                             object = tile_json_object["object"]
 
                             match object:
@@ -70,7 +69,7 @@ class Grid:
             Wood_Deposit,
             Steel_Deposit,
             String_Deposit,
-            Titanium_Deposit
+            Titanium_Deposit,
         ]
 
         return [tile for tile in self.tiles if type(tile) in INTERACTABLE_TILE_TYPES]

@@ -9,12 +9,12 @@ class Task:
     def __init__(
         self,
         weapon_type: str,
-        weapon_icon:pygame.surface.Surface,
+        weapon_icon: pygame.surface.Surface,
         material_names: list[str],
         material_icon_paths: list[str],
         completed_material_icon_paths: list[str],
         icon_scale: tuple[int, int],
-        npc: NPC
+        npc: NPC,
     ) -> None:
         self.weapon_type = weapon_type
         self.weapon_icon = weapon_icon
@@ -36,6 +36,7 @@ class Task:
             else:
                 return False  # If this is never called, the function will return true
         return True
+
 
 def new_task(npc, items_file_path, icon_scale) -> Task:
     with open(items_file_path, "r") as file:
@@ -65,5 +66,5 @@ def new_task(npc, items_file_path, icon_scale) -> Task:
             material_icon_paths,
             completed_material_icon_paths,
             icon_scale,
-            npc
+            npc,
         )
