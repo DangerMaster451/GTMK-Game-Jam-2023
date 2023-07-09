@@ -51,7 +51,7 @@ particles = []
 
 min_npcs = 1
 max_npcs = 4
-npc_spawn_chance = 1
+npc_spawn_chance = 5
 
 score = 0
 display_score = ""
@@ -78,11 +78,6 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        match game_state:
-            case "Start":
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
-                        game_state = "Game"
 
     if game_state == "Game":
         # Clear All Windows

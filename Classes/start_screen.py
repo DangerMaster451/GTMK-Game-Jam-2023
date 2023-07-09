@@ -16,10 +16,3 @@ class Start_Screen():
 
         
         self.surface.blit(self.full_logo, (0,0))
-
-        render_text = self.small_font.render("Press Space to Start", True, (255,255,255), self.bg_color)
-        render_text_rect = render_text.get_rect()
-        render_text_rect.center = Vector2(
-            self.surface.get_size()[0] / 2, 630
-        )
-        self.surface.blit(render_text, render_text_rect)
