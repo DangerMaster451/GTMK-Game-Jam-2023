@@ -10,15 +10,16 @@ from Classes.item import Item
 from Classes.player import Player
 from Classes.grid import Grid
 from Classes.side_bars import Left_Bar, Right_Bar
-from Classes.game_over_screen import Game_Over_Screen
+from Classes.end_screen import Game_Over_Screen
 from Classes.start_screen import Start_Screen
+from Classes.help_screen import Help_Screen
 
 # Basic Setup
 pygame.init()
 pygame.mixer.init()
 DEFAULT_RESOLUTION = (1280, 720)
 window = pygame.display.set_mode(DEFAULT_RESOLUTION, pygame.RESIZABLE | pygame.SCALED)
-game_display = pygame.surface.Surface((720, 720))
+
 pygame.display.set_caption("\"The Hero's Blacksmith\" - GMTK Game Jam Entry 2023")
 pygame.display.set_icon(pygame.image.load("Assets/Images/Logo/Logo_Icon.png"))
 clock = pygame.time.Clock()
@@ -29,20 +30,24 @@ step_fx = [
     pygame.mixer.Sound("Assets/SoundFX/Step 1.wav"),
     #pygame.mixer.Sound("Assets/SoundFX/Step 2.wav")
 ]
-
+# Load Assets
 grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
 player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
 tool_tip_e = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_e.png"), (50,50))
+ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
 
 # Create Objects
-player = Player(game_display)
-grid = Grid(game_display, "grid_data.json", player)
+game_state = "Start"
+start_display = Start_Screen(window)
+help_display = Help_Screen(window)
+game_display = pygame.surface.Surface((720, 720))
+game_over_display = Game_Over_Screen(window)
 
 right_bar = Right_Bar(window, (1000, 0), (78, 156, 230))
 left_bar = Left_Bar(window, (0, 0), (78, 156, 230))
 
-game_over_display = Game_Over_Screen(window)
-start_display = Start_Screen(window)
+player = Player(game_display)
+grid = Grid(game_display, "grid_data.json", player)
 
 tasks = []
 npcs = []
@@ -60,14 +65,6 @@ timer = 60
 display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
-
-game_state = "Start"
-
-# Start Music
-#pygame.mixer_music.load("Assets/Music/Theme.wav")
-#pygame.mixer_music.play(-1)
-
-ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
 
 pickup = Item(game_display, Vector2(0,0), grass_particle, (35,35))
 
@@ -206,6 +203,11 @@ while True:
             window.blit(start_display.surface, (0,0))
 
             if keys[pygame.K_SPACE]:
+                game_state = "Help"
+        case "Help":
+            help_display.render()
+            window.blit(help_display.surface, (0,0))
+            if keys[pygame.K_w]:
                 game_state = "Game"
                 ticking.play()
         case "Game":
