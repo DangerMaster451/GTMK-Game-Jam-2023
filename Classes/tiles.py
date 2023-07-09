@@ -32,12 +32,11 @@ class Anvil_Left(Tile):
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -69,12 +68,11 @@ class Wood_Deposit(Tile):
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -94,12 +92,11 @@ class Steel_Deposit(Tile):
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -119,12 +116,11 @@ class String_Deposit(Tile):
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -144,12 +140,11 @@ class Titanium_Deposit(Tile):
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
