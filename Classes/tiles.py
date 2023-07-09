@@ -32,12 +32,11 @@ class Anvil_Left(Tile):
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -63,18 +62,18 @@ class Wood_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/Wood_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/Wood_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Wood"
         self.scale = scale
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -88,18 +87,18 @@ class Steel_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/Steel_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/Steel_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Steel"
         self.scale = scale
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -113,18 +112,18 @@ class String_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/String_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/String_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "String"
         self.scale = scale
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False
@@ -138,18 +137,18 @@ class Titanium_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/Titanium_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/Titanium_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Titanium"
         self.scale = scale
 
     def check_interaction(self, player) -> bool:
         # calculate distance a**2 + b**2 = c**2
-        keys = pygame.key.get_pressed()
         distance_to_player = math.sqrt(
             abs(self.position.x - player.position.x) ** 2
             + abs(self.position.y - player.position.y) ** 2
         )
-        if distance_to_player < 50 and keys[pygame.K_e]:
+        if distance_to_player < 50:
             return True
         else:
             return False

@@ -32,6 +32,7 @@ step_fx = [
 
 grass_particle = pygame.image.load("Assets/Images/Tiles/Grass.png")
 player_particle = pygame.image.load("Assets/Images/Tiles/Tiles.png")
+tool_tip_e = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/tool_tip_e.png"), (50,50))
 
 # Create Objects
 player = Player(game_display)
@@ -68,7 +69,7 @@ game_state = "Start"
 
 ticking = pygame.mixer.Sound("Assets/Music/countdown.mp3")
 
-pickup = Item(game_display, Vector2(0,0), grass_particle, (50,50))
+pickup = Item(game_display, Vector2(0,0), grass_particle, (35,35))
 
 # Game Loop
 while True:
@@ -161,20 +162,22 @@ while True:
         for index, item in enumerate(grid.get_anvil_inventories()[0]):
             right_bar.display_text(item, (255, 255, 0), (435 + index*20), small_text=True)
 
+        keys = pygame.key.get_pressed()
+
         # Check for interactions
         for tile in interactable_tiles:
             if tile.check_interaction(player):
-                if type(tile) == Anvil_Left:
-                    if player.item not in tile.inventory and player.item != None:
-                        anvil_fx.play()
-                        tile.inventory.append(player.item)
-                    player.item = None
-                    player.item_texture = None
-                else:
-                    player.item = tile.item_name
-                    player.item_texture = tile.image
-
-        keys = pygame.key.get_pressed()
+                game_display.blit(tool_tip_e, Vector2(player.position.x, player.position.y - 65))
+                if keys[pygame.K_e]:
+                    if type(tile) == Anvil_Left:
+                        if player.item not in tile.inventory and player.item != None:
+                            anvil_fx.play()
+                            tile.inventory.append(player.item)
+                        player.item = None
+                        player.item_texture = None
+                    else:
+                        player.item = tile.item_name
+                        player.item_texture = tile.item_texture        
 
         # Check for completed Tasks
         for _task in tasks:
