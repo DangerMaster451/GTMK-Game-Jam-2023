@@ -130,24 +130,11 @@ while True:
                     npcs.remove(npc)
                     del npc
 
-        # Display Tasks
-        left_bar.display_text("Tasks", (255, 255, 255), 75)
-        for index, _task in enumerate(tasks):
-            left_bar.display_task(
-                _task,
-                grid,
-                (255, 255, 0),
-                Vector2(75, 125*(index+1)),
-                25,
-                _task.check_if_task_completed(grid),
-            )
-
         # Display Text
         right_bar.display_text("Score", (255, 255, 255), 75)
         right_bar.display_text(display_score, (255, 255, 255), 100, small_text=True)
 
-        right_bar.display_text("Timer", (255, 255, 255), 135)
-        right_bar.display_text(display_timer, (255, 255, 255), 160, small_text=True)
+        left_bar.display_text(f"Timer: {display_timer}", (255, 255, 0), 75)
 
         right_bar.display_text("Player", (255, 255, 255), 275)
         right_bar.display_text("Inventory", (255, 255, 255), 310)
@@ -158,6 +145,18 @@ while True:
 
         for index, item in enumerate(grid.get_anvil_inventories()[0]):
             right_bar.display_text(item, (255, 255, 0), (435 + index*20), small_text=True)
+
+        # Display Tasks
+        left_bar.display_text("Tasks", (255, 255, 255), 125)
+        for index, _task in enumerate(tasks):
+            left_bar.display_task(
+                _task,
+                grid,
+                (255, 255, 0),
+                Vector2(75, 175*(index+1)),
+                25,
+                _task.check_if_task_completed(grid),
+            )
 
         keys = pygame.key.get_pressed()
 
