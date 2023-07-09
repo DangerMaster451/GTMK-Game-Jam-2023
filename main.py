@@ -79,134 +79,141 @@ while True:
             pygame.quit()
             exit()
 
-    # Clear All Windows
-    window.fill((94, 129, 162))
-    left_bar.sideBar_surface.fill(left_bar.bg_color)
-    right_bar.sideBar_surface.fill(right_bar.bg_color)
-    game_display.fill((94, 129, 162))
+    if game_state == "Game":
+        # Clear All Windows
+        window.fill((94, 129, 162))
+        left_bar.sideBar_surface.fill(left_bar.bg_color)
+        right_bar.sideBar_surface.fill(right_bar.bg_color)
+        game_display.fill((94, 129, 162))
 
-    # Spawn NPCs
-    npcs = npc_module.try_spawn_npc(game_display, npcs, min_npcs, max_npcs, npc_spawn_chance)
+        # Spawn NPCs
+        npcs = npc_module.try_spawn_npc(game_display, npcs, min_npcs, max_npcs, npc_spawn_chance)
 
-    # Render Sprites    
-    grid.render()
-    pickup.update(player.position, player.item_texture)
-    player.update()
+        # Render Sprites    
+        grid.render()
+        pickup.update(player.position, player.item_texture)
+        player.update()
 
-    # Spawn Player Particles
-    if player.is_moving():
-        particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
+        # Spawn Player Particles
+        if player.is_moving():
+            particles = particles_module.spawn_particles(game_display, particles, Vector2(player.position.x+25, player.position.y+45), test_particle_image, Vector2(100,100), 75)
 
-    # Spawn NPC Particles
-    for npc in npcs:
-        if npc.state == "move" or npc.state == "leave":
-            particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), test_particle_image, Vector2(100,100), 75)
+        # Spawn NPC Particles
+        for npc in npcs:
+            if npc.state == "move" or npc.state == "leave":
+                particles = particles_module.spawn_particles(game_display, particles, Vector2(npc.position.x+25, npc.position.y+45), test_particle_image, Vector2(100,100), 75)
 
-    # Render Particles
-    for particle in particles: particle.update() 
+        # Render Particles
+        for particle in particles: particle.update() 
 
-    # Remove unused Particles
-    for particle in particles:
-        if particle.life <= 0:
-            particles.remove(particle)
-            del particle
+        # Remove unused Particles
+        for particle in particles:
+            if particle.life <= 0:
+                particles.remove(particle)
+                del particle
 
-    # Update NPCs
-    for npc in npcs:
-        npc.update()
+        # Update NPCs
+        for npc in npcs:
+            npc.update()
 
-        match npc.state:
-            case "start_order":
-                tasks.append(task_module.new_task(npc, "items.json", (25,25)))
+            match npc.state:
+                case "start_order":
+                    tasks.append(task_module.new_task(npc, "items.json", (25,25)))
 
-            case "wait":
-                match = False
-                for _task in tasks:
-                    if _task.npc == npc:
-                        match = True
-                if match == False:
-                    npc.state = "leave"
+                case "wait":
+                    match = False
+                    for _task in tasks:
+                        if _task.npc == npc:
+                            match = True
+                    if match == False:
+                        npc.state = "leave"
 
-            case "delete":
-                npcs.remove(npc)
-                del npc
+                case "delete":
+                    npcs.remove(npc)
+                    del npc
 
-    # Display Tasks
-    left_bar.display_text("Tasks", (255, 255, 255), 75)
-    for index, _task in enumerate(tasks):
-        left_bar.display_task(
-            _task,
-            grid,
-            (255, 255, 0),
-            Vector2(75, 125*(index+1)),
-            25,
-            _task.check_if_task_completed(grid),
-        )
+        # Display Tasks
+        left_bar.display_text("Tasks", (255, 255, 255), 75)
+        for index, _task in enumerate(tasks):
+            left_bar.display_task(
+                _task,
+                grid,
+                (255, 255, 0),
+                Vector2(75, 125*(index+1)),
+                25,
+                _task.check_if_task_completed(grid),
+            )
 
-    # Display Text
-    right_bar.display_text("Score", (255, 255, 255), 75)
-    right_bar.display_text(display_score, (255, 255, 255), 100, small_text=True)
+        # Display Text
+        right_bar.display_text("Score", (255, 255, 255), 75)
+        right_bar.display_text(display_score, (255, 255, 255), 100, small_text=True)
 
-    right_bar.display_text("Timer", (255, 255, 255), 135)
-    right_bar.display_text(display_timer, (255, 255, 255), 160, small_text=True)
+        right_bar.display_text("Timer", (255, 255, 255), 135)
+        right_bar.display_text(display_timer, (255, 255, 255), 160, small_text=True)
 
-    right_bar.display_text("Player", (255, 255, 255), 275)
-    right_bar.display_text("Inventory", (255, 255, 255), 310)
-    right_bar.display_text(player.item, (255, 255, 0), 335, small_text=True)
+        right_bar.display_text("Player", (255, 255, 255), 275)
+        right_bar.display_text("Inventory", (255, 255, 255), 310)
+        right_bar.display_text(player.item, (255, 255, 0), 335, small_text=True)
 
-    right_bar.display_text("Anvil", (255, 255, 255), 375)
-    right_bar.display_text("Inventory", (255, 255, 255), 410)
+        right_bar.display_text("Anvil", (255, 255, 255), 375)
+        right_bar.display_text("Inventory", (255, 255, 255), 410)
 
-    for index, item in enumerate(grid.get_anvil_inventories()[0]):
-        right_bar.display_text(item, (255, 255, 0), (435 + index*20), small_text=True)
+        for index, item in enumerate(grid.get_anvil_inventories()[0]):
+            right_bar.display_text(item, (255, 255, 0), (435 + index*20), small_text=True)
 
-    # Check for interactions
-    for tile in interactable_tiles:
-        if tile.check_interaction(player):
-            if type(tile) == Anvil_Left:
-                if player.item not in tile.inventory and player.item != None:
-                    anvil_fx.play()
-                    tile.inventory.append(player.item)
-                player.item = None
-                player.item_texture = None
-            else:
-                player.item = tile.item_name
-                player.item_texture = tile.image
+        # Check for interactions
+        for tile in interactable_tiles:
+            if tile.check_interaction(player):
+                if type(tile) == Anvil_Left:
+                    if player.item not in tile.inventory and player.item != None:
+                        anvil_fx.play()
+                        tile.inventory.append(player.item)
+                    player.item = None
+                    player.item_texture = None
+                else:
+                    player.item = tile.item_name
+                    player.item_texture = tile.image
 
-    keys = pygame.key.get_pressed()
+        keys = pygame.key.get_pressed()
 
-    # Check for completed Tasks
-    for _task in tasks:
-        if _task.check_if_task_completed(grid):
-            if keys[pygame.K_SPACE]:
-                tasks.remove(_task)
-                grid.clear_anvil_inventories()
-                score += 1000
+        # Check for completed Tasks
+        for _task in tasks:
+            if _task.check_if_task_completed(grid):
+                if keys[pygame.K_SPACE]:
+                    tasks.remove(_task)
+                    grid.clear_anvil_inventories()
+                    score += 1000
 
-    # Update Display Score          
-    display_score = str(score)
+        # Update Display Score          
+        display_score = str(score)
 
-    # Update Display Timer
-    display_timer = str(timer)
+        # Update Display Timer
+        display_timer = str(timer)
 
-    # Clear Anvil Inventories
-    if keys[pygame.K_q]:
-        grid.clear_anvil_inventories()
+        # Clear Anvil Inventories
+        if keys[pygame.K_q]:
+            grid.clear_anvil_inventories()
 
 
     # Render Final Surfaces
+    keys = pygame.key.get_pressed()
     match game_state:
         case "Start":
             start_display.render()
             window.blit(start_display.surface, (0,0))
+
+            if keys[pygame.K_SPACE]:
+                game_state = "Game"
         case "Game":
             window.blit(game_display, (280, 0))
             right_bar.render()
             left_bar.render()
+
+            if timer < 0:
+                game_state = "End"
         case "End":
             game_over_display.render(display_score)
-            window.blit(game_over_display.surface, (280, 0))
-        
+            window.blit(game_over_display.surface, (0, 0))
 
     pygame.display.flip()
     clock.tick(60)
