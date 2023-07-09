@@ -177,7 +177,7 @@ while True:
                         player.item_texture = None
                     else:
                         player.item = tile.item_name
-                        player.item_texture = tile.image        
+                        player.item_texture = tile.item_texture        
 
         # Check for completed Tasks
         for _task in tasks:

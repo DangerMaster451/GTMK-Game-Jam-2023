@@ -62,6 +62,7 @@ class Wood_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/Wood_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/Wood_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Wood"
         self.scale = scale
@@ -86,6 +87,7 @@ class Steel_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/Steel_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/Steel_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Steel"
         self.scale = scale
@@ -110,6 +112,7 @@ class String_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/String_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/String_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "String"
         self.scale = scale
@@ -134,6 +137,7 @@ class Titanium_Deposit(Tile):
         self, window: pygame.surface.Surface, position: Vector2, scale: Vector2
     ) -> None:
         image = pygame.image.load("Assets/Images/Tiles/Titanium_Tile.png")
+        self.item_texture = pygame.transform.scale(pygame.image.load("Assets/Images/Icons/Titanium_Icon.png"), (50,50))
         Tile.__init__(self, window, position, scale, image)
         self.item_name = "Titanium"
         self.scale = scale
