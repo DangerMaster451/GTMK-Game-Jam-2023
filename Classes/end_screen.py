@@ -20,7 +20,7 @@ class Game_Over_Screen():
                 self.high_score = score
 
 
-    def render(self, score:str):
+    def render(self, score:int):
         self.update_high_score(score)
         self.surface.fill(self.bg_color)
 
@@ -38,7 +38,7 @@ class Game_Over_Screen():
         )
         self.surface.blit(render_text, render_text_rect)
 
-        render_text = self.small_font.render(score, True, (255,255,255), self.bg_color)
+        render_text = self.small_font.render(str(score), True, (255,255,255), self.bg_color)
         render_text_rect = render_text.get_rect()
         render_text_rect.center = Vector2(
             self.surface.get_size()[0] / 2, 125

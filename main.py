@@ -60,7 +60,7 @@ score = 0
 display_score = ""
 
 pygame.time.set_timer(pygame.USEREVENT, 1000)
-timer = 60
+timer = 15
 display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
