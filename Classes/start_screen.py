@@ -82,14 +82,14 @@ class Start_Screen():
         render_text_rect.topleft = Vector2(75, 350)
         self.surface.blit(render_text, render_text_rect)
 
-        render_text = self.small_font.render("Smith as many weapons as possible in 60 seconds to beat your high score", True, (255,255,0), self.bg_color)
+        render_text = self.small_font.render("Smith as many weapons as possible in 60 seconds", True, (255,255,0), self.bg_color)
         render_text_rect = render_text.get_rect()
         render_text_rect.topleft = Vector2(75, 400)
         self.surface.blit(render_text, render_text_rect)
 
-        render_text = self.small_font.render("Use WASD to move, E to interact, SPACE to smith", True, (255,255,0), self.bg_color)
+        render_text = self.small_font.render("Use WASD to move, E to interact, Q to clear inventory, SPACE to smith", True, (255,255,0), self.bg_color)
         render_text_rect = render_text.get_rect()
-        render_text_rect.topleft = Vector2(75, 400)
+        render_text_rect.topleft = Vector2(75, 425)
         self.surface.blit(render_text, render_text_rect)
 
         render_text = self.normal_font.render("Good Luck!", True, (255,255,255), self.bg_color)
