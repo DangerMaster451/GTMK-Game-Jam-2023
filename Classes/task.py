@@ -9,6 +9,7 @@ class Task:
     def __init__(
         self,
         weapon_type: str,
+        weapon_icon:pygame.surface.Surface,
         material_names: list[str],
         material_icon_paths: list[str],
         completed_material_icon_paths: list[str],
@@ -16,6 +17,7 @@ class Task:
         npc: NPC
     ) -> None:
         self.weapon_type = weapon_type
+        self.weapon_icon = weapon_icon
         self.material_names = material_names
         self.material_icons = [
             pygame.transform.scale(pygame.image.load(icon_path), icon_scale)
@@ -35,11 +37,12 @@ class Task:
                 return False  # If this is never called, the function will return true
         return True
 
-
 def new_task(npc, items_file_path, icon_scale) -> Task:
     with open(items_file_path, "r") as file:
         items = json.load(file)
         random_item = items[random.randint(0, len(items) - 1)]
+
+        weapon_icon = pygame.image.load(random_item["weapon_icon_path"])
 
         material_names = []
         for index in range(len(random_item["materials"])):
@@ -57,6 +60,7 @@ def new_task(npc, items_file_path, icon_scale) -> Task:
 
         return Task(
             random_item["name"],
+            weapon_icon,
             material_names,
             material_icon_paths,
             completed_material_icon_paths,

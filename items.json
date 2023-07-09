@@ -1,6 +1,7 @@
 [
     {
         "name":"SWORD",
+        "weapon_icon_path":"Assets/Images/Icons/Weapons/steelSword.png",
         "materials":[
             {
                 "name":"Wood", 
@@ -16,6 +17,7 @@
     },
     {
         "name":"BOW",
+        "weapon_icon_path":"Assets/Images/Icons/Weapons/steelBow.png",
         "materials":[
             {
                 "name":"Wood", 
@@ -31,6 +33,7 @@
     },
     {
         "name":"AX",
+        "weapon_icon_path":"Assets/Images/Icons/Weapons/steelAxe.png",
         "materials":[
             {
                 "name":"Wood",

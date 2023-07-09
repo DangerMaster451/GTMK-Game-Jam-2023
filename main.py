@@ -48,6 +48,7 @@ grid = Grid(game_display, "grid_data.json", player)
 tasks = []
 npcs = []
 particles = []
+weapons = []
 
 min_npcs = 1
 max_npcs = 4
@@ -62,7 +63,7 @@ display_timer = ""
 
 interactable_tiles = grid.get_interactable_tiles_in_scene()
 
-pickup = Item(game_display, Vector2(0,0), grass_particle, (35,35))
+pickup = Item(game_display, Vector2(0,0), player)
 
 def reset():
     global tasks
@@ -71,11 +72,12 @@ def reset():
     npcs = []
     global particles
     particles = []
+    global weapons
+    weapons = []
     global score
     score = 0
     global timer
     timer = 60
-
 
 # Game Loop
 while True:
@@ -98,7 +100,8 @@ while True:
 
         # Render Sprites    
         grid.render()
-        pickup.update(player.position, player.item_texture)
+        pickup.update(player.item_texture)
+        for weapon in weapons: weapon.update()
         player.update()
 
         # Spawn Player Particles
@@ -192,6 +195,8 @@ while True:
                     tasks.remove(_task)
                     grid.clear_anvil_inventories()
                     score += 1
+                    
+                    weapons.append(Item(game_display, player.position, _task.npc, _task.weapon_icon, (35,35)))
 
         # Update Display Score          
         display_score = str(score)

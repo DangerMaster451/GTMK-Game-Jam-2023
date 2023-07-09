@@ -3,14 +3,22 @@ from pygame.math import Vector2
 from Classes.player import Player
 
 class Item():
-    def __init__(self, window:pygame.surface.Surface, position:Vector2, image:pygame.surface.Surface, scale:tuple[int,int]) -> None:
+    def __init__(self, window:pygame.surface.Surface, position:Vector2, target_object, item_texture:pygame.surface.Surface=None, scale:tuple[int,int]=(None,None)) -> None:
         self.window = window
         self.position = position
-        self.image = pygame.transform.scale(image, scale)
+        self.target_object = target_object
+        if item_texture != None:
+            self.item_texture = pygame.transform.scale(item_texture, scale)
+        else:
+            self.item_texture = None
 
-    def update(self, target_position:Vector2, item_texture:pygame.surface.Surface):
+    def update(self, item_texture:pygame.surface.Surface=None):
+        target_position = self.target_object.position
         self.move(target_position)
-        self.render(item_texture)
+        if item_texture == None:
+            self.render(self.item_texture)
+        else:
+            self.render(item_texture)
 
     def move(self, target_position:Vector2):
         xDistance = self.position.x - target_position.x
