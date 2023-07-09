@@ -33,7 +33,7 @@
     },
     {
         "name":"AX",
-        "weapon_icon_path":"Assets/Images/Icons/Weapons/steelAxe.png",
+        "weapon_icon_path":"Assets/Images/Icons/Weapons/titaAxe.png",
         "materials":[
             {
                 "name":"Wood",
